@@ -1,5 +1,7 @@
 #!/bin/sh
 
+umask 0000
+
 OLD_DIR=/media/internal/.app-storage/file_.media.cryptofs.apps.usr.palm.applications.org.webosinternals.navit_0
 NAVIT_USER_DATADIR=/media/internal/appdata/org.webosinternals.navit
 

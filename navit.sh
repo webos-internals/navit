@@ -17,6 +17,7 @@ export SPEECHD_SOCKET=/tmp/speechd-sock
 
 export NAVIT_LOGFILE=$NAVIT_USER_DATADIR/navit.log
 #delete log if it is more the 300kb
+touch $NAVIT_LOGFILE
 if [ `ls -l $NAVIT_LOGFILE | awk '{print $5}'` -gt 300000 ];then
 	rm -f ${NAVIT_LOGFILE}.gz
 	gzip -9 $NAVIT_LOGFILE
