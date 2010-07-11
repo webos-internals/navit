@@ -9,7 +9,7 @@ fi
 eval $($APP_DIR/pdl-helper)
 
 export NAVIT_USER_DATADIR=$PDL_DataFilePath
-export LD_LIBRARY_PATH=$APP_DIR/lib:/media/internal/.local/lib
+export LD_LIBRARY_PATH=$APP_DIR/lib:/media/internal/.widk/usr/lib
 
 unset LC_ALL
 export LANG=${PDL_Language}.UTF-8
