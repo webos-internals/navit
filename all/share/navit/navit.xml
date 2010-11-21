@@ -342,6 +342,97 @@ Navigation</text></img>
 			<roadprofile item_types="roundabout" speed="5" route_weight="2"/>
 			<roadprofile item_types="ferry" speed="40" route_weight="40"/>
 		</vehicleprofile>
+                <!-- chr:
+                     flags used for a truck: (first flag number is 0)
+                                 8: SIZE_OR_WEIGHT_LIMIT
+                                21: TRANSPORT_TRUCK
+                  speed setup:
+                     'speed' data of the vehicleprofile for a car is
+                        reduced about 10 km/h. When the speed was at
+                        10 km/h, I reduced it to 5 km/h.
+                     'route_weight' data has been treated in the same way.
+                        If you want to discourage the use of small roads,
+                        just reduce this value.
+                  size and weight setup:
+                     This is an example, you have to use the data of your truck.
+                     bobshaffer's standard truck:
+                       (1 lb = 453.59237 g, 1 foot = .3048 m)
+                       (data has to be in [cm] and [kg] according to 'vehicleprofile.h')
+                                width=  9    feet,   274 cm
+                               height= 13.5  feet,   411 cm
+                               length= 70    feet,  2134 cm
+                               weight= 80000 lbs,  36287 kg
+                          axle_weight= 34000 lbs,  15422 kg
+                -->
+
+                <vehicleprofile name="truck" flags="0x200100" flags_forward_mask="0x200102" flags_reverse_mask="0x200101" maxspeed_handling="1" route_mode="0" static_speed="5"
+ static_distance="25"
+                                width="274" height="411" length="2134"
+                                weight="36287" axle_weight="15422">
+                        <roadprofile item_types="street_0,street_1_city,living_street,street_service,track_gravelled,track_unpaved" speed="5" route_weight="5">
+                                        <announcement level="0" distance_metric="25"/>
+                                        <announcement level="1" distance_metric="100"/>
+                                        <announcement level="2" distance_metric="200"/>
+                        </roadprofile>
+                        <roadprofile item_types="street_2_city,track_paved" speed="20" route_weight="20">
+                                        <announcement level="0" distance_metric="50"/>
+                                        <announcement level="1" distance_metric="200"/>
+                                        <announcement level="2" distance_metric="500"/>
+                        </roadprofile>
+                        <roadprofile item_types="street_3_city" speed="30" route_weight="30">
+                                        <announcement level="0" distance_metric="50"/>
+                                        <announcement level="1" distance_metric="200"/>
+                                        <announcement level="2" distance_metric="500"/>
+                        </roadprofile>
+                       <roadprofile item_types="street_4_city" speed="40" route_weight="40">
+                                        <announcement level="0" distance_metric="50"/>
+                                        <announcement level="1" distance_metric="200"/>
+                                        <announcement level="2" distance_metric="500"/>
+                        </roadprofile>
+                        <roadprofile item_types="highway_city" speed="70" route_weight="70">
+                                        <announcement level="0" distance_metric="100"/>
+                                        <announcement level="1" distance_metric="400"/>
+                                        <announcement level="2" distance_metric="1000"/>
+                        </roadprofile>
+                        <roadprofile item_types="street_1_land" speed="50" route_weight="50">
+                                        <announcement level="0" distance_metric="100"/>
+                                        <announcement level="1" distance_metric="400"/>
+                                        <announcement level="2" distance_metric="1000"/>
+                        </roadprofile>
+                        <roadprofile item_types="street_2_land" speed="55" route_weight="55">
+                                        <announcement level="0" distance_metric="100"/>
+                                        <announcement level="1" distance_metric="400"/>
+                                        <announcement level="2" distance_metric="1000"/>
+                        </roadprofile>
+                        <roadprofile item_types="street_3_land" speed="60" route_weight="60">
+                                        <announcement level="0" distance_metric="100"/>
+                                        <announcement level="1" distance_metric="400"/>
+                                        <announcement level="2" distance_metric="1000"/>
+                        </roadprofile>
+                        <roadprofile item_types="street_4_land" speed="70" route_weight="70">
+                                        <announcement level="0" distance_metric="100"/>
+                                        <announcement level="1" distance_metric="400"/>
+                                        <announcement level="2" distance_metric="1000"/>
+                        </roadprofile>
+                        <roadprofile item_types="street_n_lanes" speed="80" route_weight="80">
+                                        <announcement level="0" distance_metric="300"/>
+                                        <announcement level="1" distance_metric="1000"/>
+                                        <announcement level="2" distance_metric="2000"/>
+                        </roadprofile>
+                        <roadprofile item_types="highway_land" speed="80" route_weight="80">
+                                        <announcement level="0" distance_metric="300"/>
+                                        <announcement level="1" distance_metric="1000"/>
+                                        <announcement level="2" distance_metric="2000"/>
+                        </roadprofile>
+                        <roadprofile item_types="ramp" speed="30" route_weight="30">
+                                        <announcement level="0" distance_metric="50"/>
+                                        <announcement level="1" distance_metric="200"/>
+                                        <announcement level="2" distance_metric="500"/>
+                        </roadprofile>
+                        <roadprofile item_types="roundabout" speed="5" route_weight="5"/>
+                        <roadprofile item_types="ferry" speed="40" route_weight="40"/>
+                </vehicleprofile>
+
 
 		<route destination_distance="50"/>
 
@@ -3365,6 +3456,130 @@ Navigation</text></img>
 			<layer name="POI Labels">
 				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
 					<circle color="#606060" radius="0" width="0" text_size="10"/>
+				</itemgra>
+			</layer>
+		</layout>
+
+		<layout name="Car-simple" color="#839ea9">
+			<layer name="polygon">
+				  <itemgra item_types="poly_town" order="8-">
+				    <polygon color="#6b8091"/>
+				  </itemgra>
+			</layer>
+			<layer name="streets">
+				<itemgra item_types="water_line" order="11-">
+					<polyline width="3" color="#5e71a7" />
+				</itemgra>
+				<itemgra item_types="rail" order="9-">
+					<polyline width="4" color="#a4bac8" />
+					<polyline width="1" color="#e0e0e0" dash="4,6"/>
+				</itemgra>
+				<itemgra item_types="street_1_city,street_1_land" order="12-">
+					<polyline width="5" color="#516170"/>
+				</itemgra>
+				<itemgra item_types="street_2_city,street_2_land" order="12-">
+					<polyline width="7" color="#516170"/>
+				</itemgra>
+				<itemgra item_types="street_1_city,street_1_land" order="11">
+					<polyline width="3" color="#516170"/>
+				</itemgra>
+				<itemgra item_types="street_2_city,street_2_land" order="9-11">
+					<polyline width="5" color="#516170"/>
+				</itemgra>
+				<itemgra item_types="street_3_city,street_3_land,ramp" order="11-">
+					<polyline width="9" color="#516170" />
+				</itemgra>
+				<itemgra item_types="street_3_city,street_3_land,ramp" order="8-10">
+					<polyline width="7" color="#516170" />
+				</itemgra>
+				<itemgra item_types="street_4_city,street_4_land,street_n_lanes" order="11-">
+					<polyline width="9" color="#516170" />
+				</itemgra>
+				<itemgra item_types="street_4_city,street_4_land,street_n_lanes" order="8-10">
+					<polyline width="7" color="#516170" />
+				</itemgra>
+				<itemgra item_types="street_4_city,street_4_land,street_n_lanes" order="6-7">
+					<polyline width="3" color="#516170" />
+				</itemgra>
+				<itemgra item_types="highway_city,highway_land" order="4-">
+					<polyline width="9" color="#516170" />
+				</itemgra>
+
+				<itemgra item_types="street_route" >
+					<polyline width="11" color="#516170" />
+				</itemgra>
+				
+				<itemgra item_types="street_1_city,street_1_land" order="12-">
+					<polyline width="3" color="#a4bac8" />
+				</itemgra>
+				<itemgra item_types="street_2_city,street_2_land" order="12-">
+					<polyline width="5" color="#90a3af" />
+				</itemgra>
+				<itemgra item_types="street_1_city,street_1_land" order="11">
+					<polyline width="1" color="#a4bac8" />
+				</itemgra>
+				<itemgra item_types="street_2_city,street_2_land" order="9-11">
+					<polyline width="3" color="#90a3af" />
+				</itemgra>
+
+				<itemgra item_types="street_3_city,street_3_land,ramp" order="11-">
+					<polyline width="6" color="#a4bac8" />
+				</itemgra>
+				<itemgra item_types="street_3_city,street_3_land,ramp" order="8-10">
+					<polyline width="4" color="#a4bac8" />
+				</itemgra>
+				<itemgra item_types="street_4_city,street_4_land,street_n_lanes" order="11-">
+					<polyline width="6" color="#c7e1f2" />
+				</itemgra>
+				<itemgra item_types="street_4_city,street_4_land,street_n_lanes" order="8-10">
+					<polyline width="4" color="#c7e1f2" />
+				</itemgra>
+				<itemgra item_types="street_4_city,street_4_land,street_n_lanes" order="6-7">
+					<polyline width="1" color="#c7e1f2" />
+				</itemgra>
+
+				<itemgra item_types="highway_city,highway_land" order="4-">
+					<polyline width="3" color="#c0e1ff" />
+				</itemgra>
+
+				<itemgra item_types="street_route" >
+					<polyline width="9" color="#ffffff" />
+				</itemgra>
+			</layer>
+			<layer name="labels">
+				<itemgra item_types="water_line" order="11-">
+					<text text_size="16" color="#0000ff" />
+				</itemgra>
+				<itemgra item_types="street_1_city,street_2_city,street_3_city,street_4_city,highway_city,street_1_land,street_2_land,street_3_land,street_4_land,street_n_lanes,highway_land">
+					<text text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label,district_label,town_label_0e0,town_label_1e0,town_label_2e0,town_label_5e0,town_label_1e1,town_label_2e1,town_label_5e1,town_label_1e2,town_label_2e2,town_label_5e2,district_label_0e0,district_label_1e0,district_label_2e0,district_label_5e0,district_label_1e1,district_label_2e1,district_label_5e1,district_label_1e2,district_label_2e2,district_label_5e2" order="10-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label_1e3,town_label_2e3,district_label_1e3,district_label_2e3" order="9-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label_5e3,district_label_5e3" order="8-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label_1e4,district_label_1e4" order="7-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label_2e4,district_label_2e4" order="6-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label_5e4,town_label_1e5,district_label_5e4,district_label_1e5" order="5-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label_2e5,district_label_2e5" order="4-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+				<itemgra item_types="town_label_5e5,district_label_5e5" order="2-">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
+				</itemgra>
+
+				<itemgra item_types="town_label_1e6,town_label_2e6,town_label_5e6,town_label_1e7,district_label_1e6,district_label_2e6,district_label_5e6,district_label_1e7">
+					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
 				</itemgra>
 			</layer>
 		</layout>
