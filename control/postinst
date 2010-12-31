@@ -36,6 +36,7 @@ do
 
 	if md5sum -c "${d}.md5sum"
 	then
+		mv "$d" "${d}.old"
 		cp "$s" "$d"
 		md5sum "$d" > "${d}.md5sum"
 	else
