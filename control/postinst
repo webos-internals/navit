@@ -49,7 +49,7 @@ done
 # Modify jailusers
 if grep -q ":${APP_ID}:" $JAILUSERS
 then
-	sed -i -re '/:${APP_ID}:/ s@/etc/jail_.*\.conf$@${APP_DIR}/jail_app.conf@' /var/palm/data/jailusers
+	sed -i -re "/:${APP_ID}:/ s@/etc/jail_.*\.conf@${APP_DIR}/jail_app.conf@" /var/palm/data/jailusers
 else
 	echo "5000:5000:${APP_ID}:/var/palm/jail/${APP_ID}:${APP_DIR}/jail_app.conf" >> /var/palm/data/jailusers
 fi
