@@ -58,12 +58,12 @@ Vehicle</text></img>
 
 
 <!-- TOP SPEED -->
-<osd enabled="yes" type="speed_cam" w="200" h="18" x="116" y="409" announce_on="1" background_color="#000000FF" idle_color="#00FF00" font_size="220" label="${distance} ${camera_type}" />
+<osd enabled="yes" type="speed_cam" w="206" h="20" x="114" y="406" announce_on="1" background_color="#000000CC" font_size="220" label="${distance} ${camera_type} ${speed_limit}km/h" />
 
 <!-- menu right/top-right -->
 <osd enabled="yes" type="image" x="-70" y="18" w="20" h="20" src="$NAVIT_SHAREDIR/xpm/PreNav/ecke_or.png" /> 
 <osd enabled="yes" type="button" x="-50" y="18" w="50" h="50" command="zoom_out()" src="$NAVIT_SHAREDIR/xpm/PreNav/zoom_out.png"/>
-<osd enabled="yes" type="toggle_announcer" x="-50"	y="68" w="50"	h="50" icon_src="$NAVIT_SHAREDIR/xpm/PreNav/%s.png" background_color="#00000088"/>
+<osd enabled="yes" type="toggle_announcer" x="-50" y="68" w="50" h="50" icon_src="$NAVIT_SHAREDIR/xpm/PreNav/%s.png" background_color="#00000088"/>
 <osd enabled="yes" type="button" command="autozoom_active=pitch==0?1:0;follow=pitch==0?1:32000;pitch=pitch==0?20:0;zoom_to_route()" x="-50" y="118" w="50" h="50" src="$NAVIT_SHAREDIR/xpm/PreNav/zoom_route.png"/>
 <osd enabled="yes" type="button" x="-50" y="168" w="50" h="50" command="zoom_in()" src="$NAVIT_SHAREDIR/xpm/PreNav/zoom_in.png"/>
 
