@@ -2,9 +2,11 @@
 
 umask 0000
 
+APP_ID=org.webosinternals.navit
 OLD_DATADIR=/media/internal/.app-storage/file_.media.cryptofs.apps.usr.palm.applications.org.webosinternals.navit_0
-APP_DIR=/media/cryptofs/apps/usr/palm/applications/org.webosinternals.navit
-NAVIT_USER_DATADIR=/media/internal/appdata/org.webosinternals.navit
+APP_DIR=/media/cryptofs/apps/usr/palm/applications/$APP_ID
+NAVIT_USER_DATADIR=/media/internal/appdata/$APP_ID
+JAILUSERS=/var/palm/data/jailusers
 
 mkdir -p $NAVIT_USER_DATADIR/maps
 
@@ -36,9 +38,20 @@ do
 
 	if md5sum -c "${d}.md5sum"
 	then
+		mv "$d" "${d}.old"
 		cp "$s" "$d"
 		md5sum "$d" > "${d}.md5sum"
 	else
 		cp "$s" "${d}.new"
 	fi
 done
+
+# Modify jailusers
+#if grep -q ":${APP_ID}:" $JAILUSERS
+#then
+#	sed -i -re "/:${APP_ID}:/ s@/etc/jail_.*\.conf@${APP_DIR}/jail_app.conf@" $JAILUSERS
+#else
+#	echo "5000:5000:${APP_ID}:/var/palm/jail/${APP_ID}:${APP_DIR}/jail_app.conf" >> $JAILUSERS
+#fi
+sed -i -re "\@:${APP_ID}:.*:${APP_DIR}/jail_app.conf@ d" $JAILUSERS
+
