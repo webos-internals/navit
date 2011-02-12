@@ -6,7 +6,8 @@ APP_ID=org.webosinternals.navit
 OLD_DATADIR=/media/internal/.app-storage/file_.media.cryptofs.apps.usr.palm.applications.org.webosinternals.navit_0
 APP_DIR=/media/cryptofs/apps/usr/palm/applications/$APP_ID
 NAVIT_USER_DATADIR=/media/internal/appdata/$APP_ID
-JAILUSERS=/var/palm/data/jailusers
+CERT_STORE=/etc/ssl/certs/appsigning-bundle.crt
+CRT=$APP_DIR/package-sig.crt
 
 mkdir -p $NAVIT_USER_DATADIR/maps
 
@@ -27,31 +28,37 @@ then
 	sed -i -re "s/\/media\/internal\/MapsNavit/\$NAVIT_USER_DATADIR\/maps/" $NAVIT_USER_DATADIR/navit.xml
 fi
 
-for s in $APP_DIR/dist_files/*.xml
+(cd $APP_DIR/dist_files/; find) | while read l
 do
-	d="$NAVIT_USER_DATADIR/$(basename $s)"
+	s="$APP_DIR/dist_files/${l}"
+	d="$NAVIT_USER_DATADIR/${l}"
 
-	if [ ! -f "${d}.md5sum" ]
-	then
-		md5sum "$d" > "${d}.md5sum"
-	fi
-
-	if md5sum -c "${d}.md5sum"
-	then
-		mv "$d" "${d}.old"
-		cp "$s" "$d"
-		md5sum "$d" > "${d}.md5sum"
+	if [ -d "${s}" ]
+ 	then
+		test ! -d "${d}" && mkdir -p "${d}"
 	else
-		cp "$s" "${d}.new"
+		if [ ! -f "${d}.md5sum" ]
+		then
+			md5sum "${d}" > "${d}.md5sum"
+		fi
+
+		if md5sum -c "${d}.md5sum"
+		then
+			mv "${d}" "${d}.old"
+			cp "${s}" "${d}"
+			md5sum "${d}" > "${d}.md5sum"
+		else
+			cp "${s}" "${d}.new"
+		fi
 	fi
 done
 
-# Modify jailusers
-#if grep -q ":${APP_ID}:" $JAILUSERS
-#then
-#	sed -i -re "/:${APP_ID}:/ s@/etc/jail_.*\.conf@${APP_DIR}/jail_app.conf@" $JAILUSERS
-#else
-#	echo "5000:5000:${APP_ID}:/var/palm/jail/${APP_ID}:${APP_DIR}/jail_app.conf" >> $JAILUSERS
-#fi
-sed -i -re "\@:${APP_ID}:.*:${APP_DIR}/jail_app.conf@ d" $JAILUSERS
-
+# Make jailer trust our jail_app.conf
+SUBJECT=$(openssl x509 -in $CRT -text | grep " \+Subject:" | sed -re 's/.*Subject//' -e 's/[:,] /\//g')
+if ! grep -q "subject= $SUBJECT" $CERT_STORE
+then
+	(echo "subject= $SUBJECT"
+	 echo "================================================"
+	 cat $CRT
+	) >> $CERT_STORE
+fi
