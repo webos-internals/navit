@@ -39,10 +39,10 @@ do
 	else
 		if [ ! -f "${d}.md5sum" ]
 		then
+			cp "${s}" "${d}"
 			md5sum "${d}" > "${d}.md5sum"
-		fi
-
-		if md5sum -c "${d}.md5sum"
+		
+		elif md5sum -c "${d}.md5sum"
 		then
 			mv "${d}" "${d}.old"
 			cp "${s}" "${d}"
