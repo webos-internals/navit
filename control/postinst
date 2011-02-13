@@ -3,30 +3,46 @@
 umask 0000
 
 APP_ID=org.webosinternals.navit
-OLD_DATADIR=/media/internal/.app-storage/file_.media.cryptofs.apps.usr.palm.applications.org.webosinternals.navit_0
 APP_DIR=/media/cryptofs/apps/usr/palm/applications/$APP_ID
 NAVIT_USER_DATADIR=/media/internal/appdata/$APP_ID
-CERT_STORE=/etc/ssl/certs/appsigning-bundle.crt
-CRT=$APP_DIR/package-sig.crt
+#CERT_STORE=/etc/ssl/certs/appsigning-bundle.crt
+#CRT=$APP_DIR/package-sig.crt
 
 mkdir -p $NAVIT_USER_DATADIR/maps
 
-# Migrate data from old to new directories
-if [ -d $OLD_DATADIR ]
-then
-	mv $OLD_DATADIR/* $NAVIT_USER_DATADIR
-	rmdir $OLD_DATADIR
-	# Replace espeak with speech-dispatcher in navit.xml
-	sed -i -re "/org.webosinternals.espeak/ s/<speech type=\"cmdline\".*\/>/<speech type=\"speech_dispatcher\" data=\"100\" cps=\"15\" \/>/" $NAVIT_USER_DATADIR/navit.xml
-fi
+# Check if there where any mods to the old files and remove them if not
+LEGACY_FILES="navit_layout.xml navit_vehicleprofile.xml
+	navit_gui_PreNav.xml navit_gui_pre.xml navit_gui.xml"
+result=$(
+ for f in navit.xml $LEGACY_FILES
+ do
+	 d=$NAVIT_USER_DATADIR/$f
 
-if [ -d /media/internal/MapsNavit ]
+	 if [ -e ${d} -a -e ${d}.md5sum ] && md5sum -c "${d}.md5sum" >/dev/null
+	 then
+		 echo -n "1"
+	 elif [ -e ${d} -a ! -e ${d}.md5sum ]
+	 then
+		 echo -n "1"
+	 elif [ ! -e ${d} ]
+	 then
+		 echo -n "1"
+	 else
+		 echo -n "0"
+	 fi
+ done
+)
+
+if [ $result == "111111" ]
 then
-	mv /media/internal/MapsNavit/* $NAVIT_USER_DATADIR/maps
-	rmdir /media/internal/MapsNavit
-	# Change map-directory in navit.xml
-	sed -i -re "s/\/media\/internal\/MapsNavit/\$NAVIT_USER_DATADIR\/maps/" $NAVIT_USER_DATADIR/navit.xml
+	for f in $LEGACY_FILES
+	do
+		mv $NAVIT_USER_DATADIR/$f $NAVIT_USER_DATADIR/$f.old
+		rm -f $NAVIT_USER_DATADIR/$f.new
+		rm -f $NAVIT_USER_DATADIR/$f.md5sum
+	done
 fi
+###
 
 (cd $APP_DIR/dist_files/; find) | while read l
 do
@@ -39,14 +55,19 @@ do
 	else
 		if [ ! -f "${d}.md5sum" ]
 		then
-			md5sum "${d}" > "${d}.md5sum"
-		fi
-
-		if md5sum -c "${d}.md5sum"
-		then
-			mv "${d}" "${d}.old"
 			cp "${s}" "${d}"
 			md5sum "${d}" > "${d}.md5sum"
+		
+		elif md5sum -c "${d}.md5sum"
+		then
+			old_md5=$(cut -d ' ' -f 1 "${d}.md5sum")
+			new_md5=$(md5sum ${s} | cut -d ' ' -f 1)
+			if [ $old_md5 != $new_md5 ]
+			then
+				mv "${d}" "${d}.old"
+				cp "${s}" "${d}"
+				md5sum "${d}" > "${d}.md5sum"
+			fi
 		else
 			cp "${s}" "${d}.new"
 		fi
@@ -54,11 +75,12 @@ do
 done
 
 # Make jailer trust our jail_app.conf
-SUBJECT=$(openssl x509 -in $CRT -text | grep " \+Subject:" | sed -re 's/.*Subject//' -e 's/[:,] /\//g')
-if ! grep -q "subject= $SUBJECT" $CERT_STORE
-then
-	(echo "subject= $SUBJECT"
-	 echo "================================================"
-	 cat $CRT
-	) >> $CERT_STORE
-fi
+#SUBJECT=$(openssl x509 -in $CRT -text | grep " \+Subject:" | sed -re 's/.*Subject//' -e 's/[:,] /\//g')
+#if ! grep -q "subject= $SUBJECT" $CERT_STORE
+#then
+#	(echo "subject= $SUBJECT"
+#	 echo "================================================"
+#	 cat $CRT
+#	) >> $CERT_STORE
+#fi
+
