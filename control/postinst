@@ -5,8 +5,23 @@ umask 0000
 APP_ID=org.webosinternals.navit
 APP_DIR=/media/cryptofs/apps/usr/palm/applications/$APP_ID
 NAVIT_USER_DATADIR=/media/internal/appdata/$APP_ID
-#CERT_STORE=/etc/ssl/certs/appsigning-bundle.crt
-#CRT=$APP_DIR/package-sig.crt
+JAILUSERS=/var/palm/data/jailusers
+JAIL_SRC=/etc/jail_pdk.conf
+JAIL_DST=$APP_DIR/jail_app.conf
+LS2_PRV=/var/palm/ls2/roles/prv/$APP_ID.json
+LS2_PUB=/var/palm/ls2/roles/pub/$APP_ID.json
+
+rnd() {
+	while /bin/true
+	do
+		r=$(tr -cd 0-9 </dev/urandom | dd bs=1 count=4 2>/dev/null)
+		if ! grep -q "^${r}:" $JAILUSERS
+		then
+			echo $r
+			break
+		fi
+	done
+}
 
 mkdir -p $NAVIT_USER_DATADIR/maps
 
@@ -37,7 +52,8 @@ if [ $result == "111111" ]
 then
 	for f in $LEGACY_FILES
 	do
-		mv $NAVIT_USER_DATADIR/$f $NAVIT_USER_DATADIR/$f.old
+		test -e $NAVIT_USER_DATADIR/$f && \
+			mv $NAVIT_USER_DATADIR/$f $NAVIT_USER_DATADIR/$f.old
 		rm -f $NAVIT_USER_DATADIR/$f.new
 		rm -f $NAVIT_USER_DATADIR/$f.md5sum
 	done
@@ -74,13 +90,31 @@ do
 	fi
 done
 
-# Make jailer trust our jail_app.conf
-#SUBJECT=$(openssl x509 -in $CRT -text | grep " \+Subject:" | sed -re 's/.*Subject//' -e 's/[:,] /\//g')
-#if ! grep -q "subject= $SUBJECT" $CERT_STORE
-#then
-#	(echo "subject= $SUBJECT"
-#	 echo "================================================"
-#	 cat $CRT
-#	) >> $CERT_STORE
-#fi
+killall -w $APP_DIR/bin/navit || true
+jailer -D -i $APP_ID
+
+## Modify jail
+cp $JAIL_SRC $JAIL_DST
+cat <<EOT >>$JAIL_DST
+link:/media/internal/.widk/usr/lib/locale:/usr/lib/locale
+mount:ro:/etc/fonts
+mount:rw:/var/cache
+EOT
+
+if [ -d /var/palm/ls2/roles ]	# we are on WebOS >= 2.0
+then
+	sed -re "s@\@APP_DIR\@@${APP_DIR}@g" -e "s@\@APP_ID\@@${APP_ID}@g" \
+		$APP_DIR/dist_files/ls2-prv.json > $LS2_PRV
+	sed -re "s@\@APP_DIR\@@${APP_DIR}@g" -e "s@\@APP_ID\@@${APP_ID}@g" \
+		$APP_DIR/dist_files/ls2-pub.json > $LS2_PUB
+fi
+
+if grep -q ":${APP_ID}:" $JAILUSERS
+then
+	sed -i -re "/:${APP_ID}:/ s@/etc/jail_.*\.conf@${JAIL_DST}@" $JAILUSERS
+else
+	UID=$(rnd)
+	GID=$(head -1 $JAILUSERS | cut -d: -f2)
+	echo "${UID}:${GID}:${APP_ID}:/var/palm/jail/${APP_ID}:${JAIL_DST}" >> $JAILUSERS
+fi
 
