@@ -116,7 +116,7 @@ then
 	sed -i -re "/:${APP_ID}:/ s@/etc/jail_.*\.conf@${JAIL_DST}@" $JAILUSERS
 else
 	UID=$(rnd)
-	GID=$(head -1 $JAILUSERS | cut -d: -f2)
+	GID=5000 #$(head -1 $JAILUSERS | cut -d: -f2)
 	echo "${UID}:${GID}:${APP_ID}:/var/palm/jail/${APP_ID}:${JAIL_DST}" >> $JAILUSERS
 fi
 
