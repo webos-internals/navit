@@ -25,25 +25,19 @@ export NAVIT_LOGFILE=$NAVIT_USER_DATADIR/navit.log
 
 test -d $NAVIT_USER_DATADIR || mkdir -p $NAVIT_USER_DATADIR/maps
 
-#delete log if it is more the 300kb
-touch $NAVIT_LOGFILE
-if [ `ls -l $NAVIT_LOGFILE | awk '{print $5}'` -gt 300000 ];then
-	rm -f ${NAVIT_LOGFILE}.gz
-	gzip -9 $NAVIT_LOGFILE
-fi
+#(
+# cd $NAVIT_USER_DATADIR/maps
+# for m in *.bin_new
+# do
+#	 mv "$m" "$(basename $m .bin_new).bin"
+# done
+#)
 
-echo "------------------------- Start Navit ----------------------------------" >> $NAVIT_LOGFILE
+echo "------------------------- Start Navit ----------------------------------" > $NAVIT_LOGFILE
 date >> $NAVIT_LOGFILE
 
-if [ ! -e $NAVIT_USER_DATADIR/navit.xml ]
-then
-	cp -R $APP_DIR/dist_files/* $NAVIT_USER_DATADIR/
-	find $NAVIT_USER_DATADIR -name "*.xml" | \
-		while read l
-		do
-			md5sum ${l} > ${l}.md5sum
-		done
-fi
-
-pgrep "^navit$" || exec $APP_DIR/bin/navit -c $NAVIT_USER_DATADIR/navit.xml 2>&1 | tee -a $NAVIT_LOGFILE
+test -e $NAVIT_USER_DATADIR/navit.xml || cp $APP_DIR/dist_files/navit*.xml $NAVIT_USER_DATADIR/                                                                 
+cd $NAVIT_USER_DATADIR
+killall -w $APP_DIR/bin/navit
+exec $APP_DIR/bin/navit -c $NAVIT_USER_DATADIR/navit.xml
 

@@ -1,0 +1,64 @@
+.main .palm-page-header-wrapper .icon
+{
+	width: 64px;
+	height: 74px;
+	background: url(../icon.png) center center no-repeat;
+}
+.main .palm-page-header-wrapper .title.main {
+	left: 10px;
+	font-size: 30px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+}
+
+.main .palm-page-header-wrapper .title.sub {
+	left: 10px;
+	font-size: 14px;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+.map-row {
+	padding-top: 15px;
+	margin-left: 10px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.map-row .bbox {
+	color: gray;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 75%;
+	float: right;
+	bottom: 0px;
+	left: 0px;
+}
+
+.map-row .size {
+	color: gray;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 75%;
+	float: left;
+	bottom: 0px;
+	right: 0px;
+}
+
+.mapDir {
+	background: url(../images/folder.png) right center no-repeat;
+}
+
+.mapDownload {
+	background: url(../images/download.png) right center no-repeat;
+}
+
+.active {
+	font-weight: bold;
+}
+
+.inactive {}
+
+.new {
+	font-style: italic;
+}

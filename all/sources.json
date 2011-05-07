@@ -1,0 +1,28 @@
+[
+	{"source": "app/models/Maps.js"},
+    {"source": "app/assistants/stage-assistant.js"},
+    {
+        "scenes": "Navit",
+        "source": "app/assistants/Navit-assistant.js"
+    },
+    {
+        "scenes": "MapDownloader",
+        "source": "app/assistants/MapDownloader-assistant.js"
+    },
+    {
+        "scenes": "MapDownloader",
+        "source": "app/models/PredefinedAreas.js"
+    },
+    {
+        "scenes": "MapDownloadProgress",
+        "source": "app/models/Tools.js"
+    },
+    {
+        "scenes": "MapDownloadProgress",
+        "source": "app/assistants/MapDownloadProgress-assistant.js"
+    },
+    {
+        "scenes": "MapManager",
+        "source": "app/assistants/MapManager-assistant.js"
+    }
+]

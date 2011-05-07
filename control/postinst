@@ -2,11 +2,11 @@
 
 umask 0000
 
-APP_ID=org.webosinternals.navit
+APP_ID=org.webosinternals.navit-hybrid
 APP_DIR=/media/cryptofs/apps/usr/palm/applications/$APP_ID
 NAVIT_USER_DATADIR=/media/internal/appdata/$APP_ID
 JAILUSERS=/var/palm/data/jailusers
-JAIL_SRC=/etc/jail_pdk.conf
+JAIL_SRC=/etc/jail_hybrid.conf
 JAIL_DST=$APP_DIR/jail_app.conf
 LS2_PRV=/var/palm/ls2/roles/prv/$APP_ID.json
 LS2_PUB=/var/palm/ls2/roles/pub/$APP_ID.json
@@ -93,7 +93,7 @@ do
 done
 
 killall -w $APP_DIR/bin/navit || true
-jailer -D -i $APP_ID
+/usr/bin/jailer -D -i $APP_ID
 
 ## Modify jail
 cp $JAIL_SRC $JAIL_DST
@@ -110,6 +110,7 @@ then
 		$APP_DIR/ls2-prv.json > $LS2_PRV
 	sed -re "s@\@APP_DIR\@@${APP_DIR}@g" -e "s@\@APP_ID\@@${APP_ID}@g" \
 		$APP_DIR/ls2-pub.json > $LS2_PUB
+	/usr/bin/ls-control scan-services || true
 fi
 
 if grep -q ":${APP_ID}:" $JAILUSERS

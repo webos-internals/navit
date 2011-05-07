@@ -1,0 +1,394 @@
+[{
+    "Name": "Test",
+    "BBox": "9.8,53.7,9.8,53.7"
+}, {
+    "Name": "Whole Planet",
+    "BBox": "-180,-90,180,90"
+}, {
+    "Name": "Africa",
+    "BBox": "-20.8,-35.2,52.5,37.4",
+    "Maps": [{
+        "Name": "Angola",
+        "BBox": "11.4,-18.1,24.2,-5.3"
+    }, {
+        "Name": "Burundi",
+        "BBox": "28.9,-4.5,30.9,-2.2"
+    }, {
+        "Name": "Democratic Republic of the Congo",
+        "BBox": "11.7,-13.6,31.5,5.7"
+    }, {
+        "Name": "Kenya",
+        "BBox": "33.8,-5.2,42.4,4.9"
+    }, {
+        "Name": "Lesotho",
+        "BBox": "26.9,-30.7,29.6,-28.4"
+    }, {
+        "Name": "Madagascar",
+        "BBox": "43.0,-25.8,50.8,-11.8"
+    }, {
+        "Name": "Nambia+Botswana",
+        "BBox": "11.4,-29.1,29.5,-16.9"
+    }, {
+        "Name": "Reunion",
+        "BBox": "55.2,-21.4,55.9,-20.9"
+    }, {
+        "Name": "Rwanda",
+        "BBox": "28.8,-2.9,30.9,-1.0"
+    }, {
+        "Name": "South Africa",
+        "BBox": "15.6,-35.2,33.3,-21.9"
+    }, {
+        "Name": "Uganda",
+        "BBox": "29.3,-1.6,35.1,4.3"
+    }]
+}, {
+    "Name": "Asia",
+    "BBox": "23.8,0.1,195.0,82.4",
+    "Maps": [{
+        "Name": "China",
+        "BBox": "67.3,5.3,135.0,54.5"
+    }, {
+        "Name": "Cyprus",
+        "BBox": "32.0,34.5,34.9,35.8"
+    }, {
+        "Name": "India+Nepal",
+        "BBox": "67.9,5.5,89.6,36.0"
+    }, {
+        "Name": "Indonesia",
+        "BBox": "93.7,-17.3,155.5,7.6"
+    }, {
+        "Name": "Iran",
+        "BBox": "43.5,24.4,63.6,40.4"
+    }, {
+        "Name": "Iraq",
+        "BBox": "38.7,28.5,49.2,37.4"
+    }, {
+        "Name": "Israel",
+        "BBox": "33.99,29.8,35.95,33.4"
+    }, {
+        "Name": "Japan+Korea+Taiwan",
+        "BBox": "117.6,20.5,151.3,47.1"
+    }, {
+        "Name": "Malasia+Singapore",
+        "BBox": "94.3,-5.9,108.6,6.8"
+    }, {
+        "Name": "Mongolia",
+        "BBox": "87.5,41.4,120.3,52.7"
+    }, {
+        "Name": "Nambia+Botswana",
+        "BBox": "11.4,-29.1,29.5,-16.9"
+    }, {
+        "Name": "Thailand",
+        "BBox": "97.5,5.7,105.2,19.7"
+    }, {
+        "Name": "Turkey",
+        "BBox": "25.1,35.8,46.4,42.8"
+    }, {
+        "Name": "UAE+Other",
+        "BBox": "51.5,22.6,56.7,26.5"
+    }]
+}, {
+    "Name": "Australia",
+    "BBox": "110.5,-44.2,154.9,-9.2",
+    "Maps": [{
+        "Name": "Northern Territory",
+        "BBox": "128.2,-26.4,139.0,-10.0"
+    }, {
+        "Name": "Tasmania",
+        "BBox": "144.0,-45.1,155.3,-24.8"
+    }, {
+        "Name": "Victoria+New South Wales",
+        "BBox": "140.7,-39.4,153.7,-26.9"
+    }, {
+        "Name": "Western Australia",
+        "BBox": "112.6,-36.0,130.3,-13.3"
+    }, {
+        "Name": "New Zealand",
+        "BBox": "165.2,-47.6,179.1,-33.7"
+    }]
+}, {
+    "Name": "Europe",
+    "BBox": "-12.97,33.59,34.15,72.10",
+    "Maps": [{
+        "Name": "Western Europe",
+        "BBox": "-17.6,34.5,42.9,70.9",
+        "Maps": [{
+            "Name": "Austria",
+            "BBox": "9.4,46.32,17.21,49.1"
+        }, {
+            "Name": "BeNeLux",
+            "BBox": "2.08,48.87,7.78,54.52"
+        }, {
+            "Name": "Faroe Islands",
+            "BBox": "-7.8,61.3,-6.1,62.5"
+        }, {
+            "Name": "France",
+            "BBox": "-5.45,42.00,8.44,51.68"
+        }, {
+            "Name": "Germany",
+            "BBox": "5.18,46.84,15.47,55.64",
+            "Maps": [{
+                "Name": "Bavaria",
+                "BBox": "10.3,47.8,13.6,49.7"
+            }, {
+                "Name": "Saxonia",
+                "BBox": "11.8,50.1,15.0,51.7"
+            }]
+        }, {
+            "Name": "Germany+Austria+Switzerland",
+            "BBox": "3.4,44.5,18.6,55.1"
+        }, {
+            "Name": "Iceland",
+            "BBox": "-25.3,62.8,-11.4,67.5"
+        }, {
+            "Name": "Ireland",
+            "BBox": "-11.17,51.25,-5.23,55.9"
+        }, {
+            "Name": "Italy",
+            "BBox": "6.52,36.38,18.96,47.19"
+        }, {
+            "Name": "Spain+Portugal",
+            "BBox": "-11.04,34.87,4.62,44.41"
+        }, {
+            "Name": "Mallorca",
+            "BBox": "2.2,38.8,4.7,40.2"
+        }, {
+            "Name": "Galicia",
+            "BBox": "-10.0,41.7,-6.3,44.1"
+        }, {
+            "Name": "Scandinavia",
+            "BBox": "4.0,54.4,32.1,71.5"
+        }, {
+            "Name": "Finland",
+            "BBox": "18.6,59.2,32.3,70.3"
+        }, {
+            "Name": "Denmark",
+            "BBox": "7.49,54.33,13.05,57.88"
+        }, {
+            "Name": "Switzerland",
+            "BBox": "5.79,45.74,10.59,47.84"
+        }, {
+            "Name": "UK",
+            "BBox": "-9.7,49.6,2.2,61.2"
+        }]
+    }, {
+        "Name": "Eastern Europe",
+        "Maps": [{
+            "Name": "Bulgaria",
+            "BBox": "24.7,42.1,24.8,42.1"
+        }, {
+            "Name": "Czech Republic",
+            "BBox": "11.91,48.48,19.02,51.17"
+        }, {
+            "Name": "Croatia",
+            "BBox": "13.4,42.1,19.4,46.9"
+        }, {
+            "Name": "Estonia",
+            "BBox": "21.5,57.5,28.2,59.6"
+        }, {
+            "Name": "Greece",
+            "BBox": "28.9,37.8,29.0,37.8"
+        }, {
+            "Name": "Crete",
+            "BBox": "23.3,34.5,26.8,36.0"
+        }, {
+            "Name": "Hungary",
+            "BBox": "16.08,45.57,23.03,48.39"
+        }, {
+            "Name": "Latvia",
+            "BBox": "20.7,55.6,28.3,58.1"
+        }, {
+            "Name": "Lithuania",
+            "BBox": "20.9,53.8,26.9,56.5"
+        }, {
+            "Name": "Poland",
+            "BBox": "13.6,48.8,24.5,55.0"
+        }, {
+            "Name": "Romania",
+            "BBox": "20.3,43.5,29.9,48.4"
+        }, {
+            "Name": "Slovakia",
+            "BBox": "16.8,47.7,22.7,49.6"
+        }, {
+            "Name": "Ukraine",
+            "BBox": "22.6,51.1,33.0,56.1"
+        }]
+    }]
+}, {
+    "Name": "North America",
+    "BBox": "-178.1,6.5,-10.4,84.0",
+    "Maps": [{
+        "Name": "Alaska",
+        "BBox": "-179.5,49.5,-129,71.6"
+    }, {
+        "Name": "Canada",
+        "BBox": "-141.3,41.5,-52.2,70.2"
+    }, {
+        "Name": "Hawaii",
+        "BBox": "-161.07,18.49,-154.45,22.85"
+    }, {
+        "Name": "USA (except Alaska and Hawaii)",
+        "BBox": "-125.4,24.3,-66.5,49.3",
+        "Maps": [{
+            "Name": "Alabama",
+            "BBox": "-89.0,29.5,-84.2,35.3"
+        }, {
+            "Name": "Arizona",
+            "BBox": "-115.3,31.0,-107.6,37.5"
+        }, {
+            "Name": "Arkansas",
+            "BBox": "-94.9,32.8,-89.4,36.8"
+        }, {
+            "Name": "California+Nevada",
+            "BBox": "-124.9,32.2,-113.5,42.3"
+        }, {
+            "Name": "Colorado",
+            "BBox": "-109.2,36.7,-101.6,41.2"
+        }, {
+            "Name": "Georgia",
+            "BBox": "-85.9,30.2,-80.5,35.4"
+        }, {
+            "Name": "Idaho",
+            "BBox": "-117.7,41.6,-110.5,49.4"
+        }, {
+            "Name": "Illinois",
+            "BBox": "-91.8,36.8,-86.6,43.0"
+        }, {
+            "Name": "Indiana",
+            "BBox": "-88.9,37.6,-84.2,42.0"
+        }, {
+            "Name": "Iowa",
+            "BBox": "-97.1,40.0,-89.8,44.0"
+        }, {
+            "Name": "Kansas",
+            "BBox": "-102.6,36.7,-94.1,40.3"
+        }, {
+            "Name": "Kentucky",
+            "BBox": "-89.4,36.3,-81.8,39.2"
+        }, {
+            "Name": "Louisiana",
+            "BBox": "-94.7,28.1,-88.5,33.4"
+        }, {
+            "Name": "Massachusetts",
+            "BBox": "-73.6,41.9,-70.6,42.9"
+        }, {
+            "Name": "Michigan",
+            "BBox": "-90.3,41.4,-81.6,48.5"
+        }, {
+            "Name": "Minneapolis",
+            "BBox": "-97.8,43.2,-89.4,49.4"
+        }, {
+            "Name": "Minnesota",
+            "BBox": "-95.9,36.0,-88.6,41.0"
+        }, {
+            "Name": "Montana",
+            "BBox": "-116.3,44.1,-103.5,49.6"
+        }, {
+            "Name": "Nebraska",
+            "BBox": "-104.3,39.6,-94.8,43.3"
+        }, {
+            "Name": "Nevada",
+            "BBox": "-120.2,35.0,-113.8,42.1"
+        }, {
+            "Name": "New Mexico",
+            "BBox": "-109.2,31.1,-102.5,37.3"
+        }, {
+            "Name": "New York",
+            "BBox": "-80.1,39.8,-72.2,45.2"
+        }, {
+            "Name": "North Carolina",
+            "BBox": "-84.6,33.6,-75.0,37.1"
+        }, {
+            "Name": "North Dakota",
+            "BBox": "-104.3,45.6,-96.3,49.3"
+        }, {
+            "Name": "Oklahoma",
+            "BBox": "-103.4,33.3,-93.8,37.4"
+        }, {
+            "Name": "Oregon",
+            "BBox": "-124.8,41.8,-116.3,46.3"
+        }, {
+            "Name": "Pennsylvania",
+            "BBox": "-80.8,39.4,-74.2,42.7"
+        }, {
+            "Name": "South Carolina",
+            "BBox": "-83.5,32.0,-77.6,35.5"
+        }, {
+            "Name": "South Dakota",
+            "BBox": "-104.6,42.5,-96.0,46.2"
+        }, {
+            "Name": "Tennessee",
+            "BBox": "-90.9,34.7,-81.3,36.9"
+        }, {
+            "Name": "Texas",
+            "BBox": "-106.7,25.6,-93.4,36.8"
+        }, {
+            "Name": "Utah",
+            "BBox": "-114.6,36.5,-108.5,42.2"
+        }, {
+            "Name": "Vermont",
+            "BBox": "-73.8,42.5,-71.3,45.3"
+        }, {
+            "Name": "Washington State",
+            "BBox": "-125.0,45.5,-116.9,49.0"
+        }, {
+            "Name": "West Virginia",
+            "BBox": "-82.9,37.1,-77.5,40.8"
+        }, {
+            "Name": "Wisconsin",
+            "BBox": "-93.3,41.4,-86.1,47.2"
+        }, {
+            "Name": "Wyoming",
+            "BBox": "-111.6,40.7,-103.2,45.4"
+        }]
+    }]
+}, {
+    "Name": "South+Middle America",
+    "BBox": "-83.5,-56.3,-30.8,13.7",
+    "Maps": [{
+        "Name": "Argentina",
+        "BBox": "-73.9,-57.3,-51.6,-21.0"
+    }, {
+        "Name": "Argentina+Chile",
+        "BBox": "-77.2,-56.3,-52.7,-16.1"
+    }, {
+        "Name": "Bolivia",
+        "BBox": "-70.5,-23.1,-57.3,-9.3"
+    }, {
+        "Name": "Brazil",
+        "BBox": "-71.4,-34.7,-32.8,5.4"
+    }, {
+        "Name": "Cuba",
+        "BBox": "-85.3,19.6,-74.0,23.6"
+    }, {
+        "Name": "Colombia",
+        "BBox": "-79.1,-4.0,-66.7,12.6"
+    }, {
+        "Name": "Ecuador",
+        "BBox": "-82.6,-5.4,-74.4,2.3"
+    }, {
+        "Name": "Guyana+Suriname+Guyane Francaise",
+        "BBox": "-62.0,1.0,-51.2,8.9"
+    }, {
+        "Name": "Haiti+Republica Dominicana",
+        "BBox": "-74.8,17.3,-68.2,20.1"
+    }, {
+        "Name": "Jamaica",
+        "BBox": "-78.6,17.4,-75.9,18.9"
+    }, {
+        "Name": "Mexico",
+        "BBox": "-117.6,14.1,-86.4,32.8"
+    }, {
+        "Name": "Paraguay",
+        "BBox": "-63.8,-28.1,-53.6,-18.8"
+    }, {
+        "Name": "Peru",
+        "BBox": "-82.4,-18.1,-67.5,0.4"
+    }, {
+        "Name": "Uruguay",
+        "BBox": "-59.2,-36.5,-51.7,-29.7"
+    }, {
+        "Name": "Venezuela",
+        "BBox": "-73.6,0.4,-59.7,12.8"
+    }]
+}]

@@ -1,10 +1,10 @@
 {
-	"id": "org.webosinternals.navit",
+	"id": "org.webosinternals.navit-hybrid",
 	"version": "@VERSION@",
 	"vendor": "Navit Project",
-	"type": "pdk",
-	"main": "navit.sh",
-	"icon": "Icon.png",
-	"title": "Navit",
-	"requiredMemory": 32
+	"type": "web",
+	"main": "index.html",
+	"icon": "icon.png",
+	"title": "Navit-Hybrid",
+	"plug-ins": "true"
 }
