@@ -1690,6 +1690,9 @@ Vehicle</text>
 				<itemgra item_types="poi_bar" order="12-">
 					<icon src="bar.png"/>
 				</itemgra>
+				<itemgra item_types="poi_pub" order="12-">
+					<icon src="beer.png"/>
+				</itemgra>
 				<itemgra item_types="poi_bridge" order="12-">
 					<icon src="bridge.xpm"/>
 				</itemgra>
@@ -1814,7 +1817,7 @@ Vehicle</text>
 					<icon src="garmin.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_golf" order="12-">
-					<icon src="golf.xpm"/>
+					<icon src="golf.png"/>
 				</itemgra>
 				<itemgra item_types="poi_government_building" order="12-">
 					<icon src="goverment_building.xpm"/>
@@ -1835,7 +1838,7 @@ Vehicle</text>
 					<icon src="information.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_justice" order="12-">
-					<icon src="justice.xpm"/>
+					<icon src="justice.png"/>
 				</itemgra>
 				<itemgra item_types="poi_landmark" order="11-">
 					<icon src="landmark.xpm"/>
@@ -1871,7 +1874,7 @@ Vehicle</text>
 					<icon src="mark.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_military" order="11-">
-					<icon src="military.xpm"/>
+					<icon src="military.png"/>
 				</itemgra>
 				<itemgra item_types="poi_mine" order="12-">
 					<icon src="mine.xpm"/>
@@ -1925,7 +1928,7 @@ Vehicle</text>
 					<icon src="restricted_area.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_restroom" order="13-">
-					<icon src="restroom.xpm"/>
+					<icon src="toilets.png"/>
 				</itemgra>
 				<itemgra item_types="poi_sailing" order="12-">
 					<icon src="sailing.xpm"/>
@@ -1967,7 +1970,7 @@ Vehicle</text>
 					<icon src="shower.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_skiing" order="11-">
-					<icon src="skiing.xpm"/>
+					<icon src="skiing.png"/>
 				</itemgra>
 				<itemgra item_types="poi_social_service" order="12-">
 					<icon src="social_service.xpm"/>
@@ -1982,7 +1985,7 @@ Vehicle</text>
 					<icon src="stadium.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_swimming" order="12-">
-					<icon src="swimming.xpm"/>
+					<icon src="swimming.png"/>
 				</itemgra>
 				<itemgra item_types="poi_telephone" order="13-">
 					<icon src="telephone.xpm"/>
@@ -2051,26 +2054,26 @@ Vehicle</text>
 					<icon src="traffic_signals.png"/>
 				</itemgra>
 				<itemgra item_types="poi_wifi" order="13-">
-					<icon src="wifi.xpm"/>
+					<icon src="wifi.png"/>
 				</itemgra>
 				<itemgra item_types="poi_image" order="12-">
 					<image/>
 				</itemgra>
 				<!-- I'm not sure if the following stuff should appear in any layout. Maybe portions should only apply to the bicyle layout. -->
 				<itemgra item_types="poi_bench" order="13-">
-					<icon src="bench.xpm"/>
+					<icon src="bench.png"/>
 				</itemgra>
 				<itemgra item_types="poi_biergarten" order="12-">
-					<icon src="biergarten.xpm"/>
+					<icon src="beer.png"/>
 				</itemgra>
 				<itemgra item_types="poi_boundary_stone" order="13-">
-					<icon src="boundary_stone.xpm"/>
+					<icon src="boundary_stone.png"/>
 				</itemgra>
 				<itemgra item_types="poi_castle" order="11-">
 					<icon src="castle.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_ruins" order="11-">
-					<icon src="ruins.xpm"/>
+					<icon src="ruins.png"/>
 				</itemgra>
 				<itemgra item_types="poi_hunting_stand" order="12-">
 					<icon src="hunting_stand.xpm"/>
@@ -2085,13 +2088,13 @@ Vehicle</text>
 					<icon src="shelter.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_fountain" order="13-">
-					<icon src="fountain.xpm"/>
+					<icon src="fountain.png"/>
 				</itemgra>
 				<itemgra item_types="poi_potable_water" order="13-">
 					<icon src="potable_water.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_toilets" order="12-">
-					<icon src="toilets.xpm"/>
+					<icon src="toilets.png"/>
 				</itemgra>
 				<itemgra item_types="poi_viewpoint" order="10-">
 					<icon src="viewpoint.png"/>
@@ -2110,7 +2113,7 @@ Vehicle</text>
 				</itemgra>
 			</layer>
 			<layer name="POI Labels">
-				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
+				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
 					<circle color="#606060" radius="0" width="0" text_size="10"/>
 				</itemgra>
 				<itemgra item_types="poi_custom0,poi_custom1,poi_custom2,poi_custom3,poi_custom4,poi_custom5,poi_custom6,poi_custom7,poi_custom8,poi_custom9,poi_customa,poi_customb,poi_customc,poi_customd,poi_custome,poi_customf" order="14-">
@@ -3045,6 +3048,9 @@ Vehicle</text>
 				<itemgra item_types="poi_bar" order="12-">
 					<icon src="bar.png"/>
 				</itemgra>
+				<itemgra item_types="poi_pub" order="12-">
+					<icon src="beer.png"/>
+				</itemgra>
 				<itemgra item_types="poi_bridge" order="0-">
 					<icon src="bridge.xpm"/>
 				</itemgra>
@@ -3175,7 +3181,7 @@ Vehicle</text>
 					<icon src="garmin.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_golf" order="12-">
-					<icon src="golf.xpm"/>
+					<icon src="golf.png"/>
 				</itemgra>
 				<itemgra item_types="poi_government_building" order="0-">
 					<icon src="goverment_building.xpm"/>
@@ -3196,7 +3202,7 @@ Vehicle</text>
 					<icon src="information.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_justice" order="10-">
-					<icon src="justice.xpm"/>
+					<icon src="justice.png"/>
 				</itemgra>
 				<itemgra item_types="poi_landmark" order="0-">
 					<icon src="landmark.xpm"/>
@@ -3232,7 +3238,7 @@ Vehicle</text>
 					<icon src="mark.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_military" order="0-">
-					<icon src="military.xpm"/>
+					<icon src="military.png"/>
 				</itemgra>
 				<itemgra item_types="poi_mine" order="0-">
 					<icon src="mine.xpm"/>
@@ -3286,7 +3292,7 @@ Vehicle</text>
 					<icon src="restricted_area.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_restroom" order="13-">
-					<icon src="restroom.xpm"/>
+					<icon src="toilets.png"/>
 				</itemgra>
 				<itemgra item_types="poi_sailing" order="0-">
 					<icon src="sailing.xpm"/>
@@ -3328,7 +3334,7 @@ Vehicle</text>
 					<icon src="shower.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_skiing" order="12-">
-					<icon src="skiing.xpm"/>
+					<icon src="skiing.png"/>
 				</itemgra>
 				<itemgra item_types="poi_social_service" order="0-">
 					<icon src="social_service.xpm"/>
@@ -3343,7 +3349,7 @@ Vehicle</text>
 					<icon src="stadium.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_swimming" order="12-">
-					<icon src="swimming.xpm"/>
+					<icon src="swimming.png"/>
 				</itemgra>
 				<itemgra item_types="poi_telephone" order="13-">
 					<icon src="telephone.png"/>
@@ -3370,7 +3376,7 @@ Vehicle</text>
 					<icon src="tunnel.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_wifi" order="11-">
-					<icon src="wifi.xpm"/>
+					<icon src="wifi.png"/>
 				</itemgra>
 				<itemgra item_types="poi_wine" order="0-">
 					<icon src="wine.xpm"/>
@@ -3419,13 +3425,13 @@ Vehicle</text>
 				</itemgra>
 				<!-- I'm not sure if the following stuff should appear in any layout. Maybe portions should only apply to the bike layout? -->
 				<itemgra item_types="poi_bench" order="13-">
-					<icon src="bench.xpm"/>
+					<icon src="bench.png"/>
 				</itemgra>
 				<itemgra item_types="poi_biergarten" order="12-">
-					<icon src="biergarten.xpm"/>
+					<icon src="beer.png"/>
 				</itemgra>
 				<itemgra item_types="poi_boundary_stone" order="13-">
-					<icon src="boundary_stone.xpm"/>
+					<icon src="boundary_stone.png"/>
 				</itemgra>
 				<itemgra item_types="poi_castle" order="12-">
 					<icon src="castle.xpm"/>
@@ -3443,13 +3449,13 @@ Vehicle</text>
 					<icon src="shelter.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_fountain" order="12-">
-					<icon src="fountain.xpm"/>
+					<icon src="fountain.png"/>
 				</itemgra>
 				<itemgra item_types="poi_potable_water" order="12-">
 					<icon src="potable_water.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_toilets" order="12-">
-					<icon src="toilets.xpm"/>
+					<icon src="toilets.png"/>
 				</itemgra>
 				<itemgra item_types="poi_viewpoint" order="12-">
 					<icon src="viewpoint.png"/>
@@ -3465,7 +3471,7 @@ Vehicle</text>
 				</itemgra>
 			</layer>
 			<layer name="POI Labels">
-				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
+				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
 					<circle color="#606060" radius="0" width="0" text_size="10"/>
 				</itemgra>
 			</layer>
@@ -4283,7 +4289,7 @@ Vehicle</text>
         </itemgra>
       </layer>
       <layer name="POI Labels" active="1">
-        <itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle"
+        <itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle"
         order="15-">
           <circle color="#606060" radius="0" width="0"
           text_size="10" />
@@ -4325,6 +4331,9 @@ Vehicle</text>
         </itemgra>
         <itemgra item_types="poi_bar" order="12-">
           <icon src="bar.png" />
+        </itemgra>
+        <itemgra item_types="poi_pub" order="12-">
+          <icon src="beer.png" />
         </itemgra>
         <itemgra item_types="poi_bridge" order="12-">
           <icon src="bridge.png" />
@@ -4750,7 +4759,7 @@ Vehicle</text>
         </itemgra>
       </layer>
       <layer name="Android-POI-Labels-full" active="0">
-        <itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle"
+        <itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle"
         order="14-">
           <circle color="#606060" radius="0" width="0"
           text_size="10" />
@@ -6344,7 +6353,7 @@ Vehicle</text>
 				</itemgra>
 				<!-- leisure=golf_curse -->
 				<itemgra item_types="poi_golf" order="14-">
-					<icon src="golf.xpm"/>
+					<icon src="golf.png"/>
 					<circle color="#000000" radius="3" text_size="7"/>
 				</itemgra>
 				<!-- tourism=hotel -->
