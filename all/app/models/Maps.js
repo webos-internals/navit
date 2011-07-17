@@ -1,6 +1,6 @@
 var Maps = Class.create({
     initialize: function(){
-        this.MapDir = "/media/internal/appdata/" + Mojo.Controller.appInfo.id + "/maps";
+        this.MapDir = "/media/internal/appdata/org.webosinternals.navit/maps";
         this.ApiUrl = "http://maps.navit-project.org/api/map/?bbox=";
         this.Downloads = {};
         this.CBQ_getMaps = [];

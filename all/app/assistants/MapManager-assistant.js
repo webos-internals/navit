@@ -1,4 +1,5 @@
 // vim: sw=3 ts=3
+
 function MapManagerAssistant(){
    /* this is the creator function for your scene assistant object. It will be passed all the 
      	additional parameters (after the scene name) that were passed to pushScene. The reference

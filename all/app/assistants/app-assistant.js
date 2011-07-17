@@ -1,4 +1,7 @@
 // vim: sw=3 ts=3
+
+G = {};	// global data goes here
+
 function AppAssistant(appController) {
 	Mojo.Log.info("AppAssistant");
 	/* this is the creator function for your stage assistant object */
@@ -6,7 +9,6 @@ function AppAssistant(appController) {
 
 AppAssistant.prototype.setup = function() {
 	Mojo.Log.info("AppAssistant setup");
-
 }
 
 // -------------------------------------------------------
@@ -74,7 +76,9 @@ AppAssistant.prototype.handleLaunch = function (launchParameters) {
 			}
 			if (launchParameters.location.age) {
 				Mojo.Log.info("launchParameters.location.age is: %s", launchParameters.location.age);
-			}	
+			}
+
+			G.launchParameters = launchParameters;
 		}
 	}
 
