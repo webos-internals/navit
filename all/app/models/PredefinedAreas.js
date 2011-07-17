@@ -41,11 +41,11 @@ var PredefinedAreas = Class.create({
         for (var i = 0; i < list.length; i++) {
             var item = list[i];
             if (item.Maps) {
-                item.Type = "mapDir";
+                item.Class = "mapDir";
                 item.Maps = this.prepareList(item.Maps);
             }
             else {
-                item.Type = "mapDownload";
+                item.Class = "mapDownload";
             }
             new_list.push(item);
         }

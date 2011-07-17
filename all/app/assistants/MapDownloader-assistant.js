@@ -79,7 +79,7 @@ MapDownloaderAssistant.prototype.MapDefinitionListTap = function(event){
          var items = [{
             Name: item.Name,
                BBox: item.BBox,
-               Type: "mapDownload"
+               Class: "mapDownload"
          }].concat(item.Maps);
       }
       else {

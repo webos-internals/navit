@@ -33,11 +33,11 @@ StageAssistant.prototype.setup = function() {
 	}
 	else {
 		G.Maps = new Maps();
-		G.Maps.getMaps(this.getMapsCB.bind(this));
+		G.Maps.updateMaps(this.updateMapsCB.bind(this));
 	}
 };
 
-StageAssistant.prototype.getMapsCB = function(maps) {
+StageAssistant.prototype.updateMapsCB = function(maps) {
 	if (maps.length > 0) {
 		this.controller.pushScene("MapManager");
 		//this.controller.pushScene({name:"Navit", disableSceneScroller: true});

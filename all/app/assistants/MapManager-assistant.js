@@ -42,7 +42,7 @@ MapManagerAssistant.prototype.setup = function(){
 MapManagerAssistant.prototype.activate = function(event){
    /* put in event handlers here that should only be in effect when this scene is active. For
      	example, key handlers that are observing the document */
-   G.Maps.getMaps(this.GetMapsCallback.bind(this));
+   G.Maps.updateMaps(this.GetMapsCallback.bind(this));
 };
 
 MapManagerAssistant.prototype.deactivate = function(event){
@@ -64,7 +64,7 @@ MapManagerAssistant.prototype.GetMapsCallback = function(list){
 };
 
 MapManagerAssistant.prototype.MapListTap = function(event){
-   G.Maps.makeActive(event.item, this.GetMapsCallback.bind(this));
+   G.Maps.toggleActive(event.item, this.GetMapsCallback.bind(this));
 };
 
 MapManagerAssistant.prototype.MapListAdd = function(event){

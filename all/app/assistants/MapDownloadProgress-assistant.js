@@ -16,10 +16,10 @@ MapDownloadProgressAssistant.prototype.setup = function(){
 
    /* setup widgets here */
    this.controller.setupWidget("DownloadProgressPill", {
-      title: this.Item.Name
-   }, this.progressModel = {
-      value: 0,
-   disabled: false
+      	title: this.Item.Name
+		}, this.progressModel = {
+      	value: 0,
+			disabled: false
    });
 
    /* add event handlers to listen to events from widgets */
