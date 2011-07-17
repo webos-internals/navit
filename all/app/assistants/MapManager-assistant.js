@@ -77,6 +77,7 @@ MapManagerAssistant.prototype.MapListDelete = function(event){
 
 MapManagerAssistant.prototype.handleCommand = function(event){
    //test for Mojo.Event.back, not Mojo.Event.command..
+/*
    if (event.type == Mojo.Event.back) {
       if (this.controller.stageController.getScenes().length == 1) {
          event.preventDefault();
@@ -87,4 +88,5 @@ MapManagerAssistant.prototype.handleCommand = function(event){
          });
       }
    }
+*/
 };
