@@ -1,0 +1,10 @@
+{
+	"id": "org.webosinternals.navit-maps",
+	"version": "1",
+	"vendor": "Navit Project",
+	"type": "web",
+	"main": "index.html",
+	"icon": "icon.png",
+	"title": "Navit Maps",
+	"mimeTypes": [{"scheme": "mapto"}, {"scheme": "maploc"},{"scheme": "telenav"}]
+}
