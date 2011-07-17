@@ -1,52 +1,54 @@
+// vim: sw=3 ts=3
 function NavitAssistant(){
-    /* this is the creator function for your scene assistant object. It will be passed all the 
-     additional parameters (after the scene name) that were passed to pushScene. The reference
-     to the scene controller (this.controller) has not be established yet, so any initialization
-     that needs the scene controller should be done in the setup function below. */
+   /* this is the creator function for your scene assistant object. It will be passed all the 
+     	additional parameters (after the scene name) that were passed to pushScene. The reference
+     	to the scene controller (this.controller) has not be established yet, so any initialization
+     	that needs the scene controller should be done in the setup function below. */
 }
 
 NavitAssistant.prototype.setup = function(){
-    /* this function is for setup tasks that have to happen when the scene is first created */
-    
-    /* use Mojo.View.render to render view templates and add them to the scene, if needed */
-    
-    /* setup widgets here */
-    this.controller.setupWidget(Mojo.Menu.commandMenu, {
-        spacerHeight: 0,
-        menuClass: 'no-fade'
-    }, this.ViewMenuModel = {
-        visible: true,
-        items: [{
-            label: "M",
-            command: "menu"
-        }]
-    });
-    /* add event handlers to listen to events from widgets */
+   /* this function is for setup tasks that have to happen when the scene is first created */
+
+   /* use Mojo.View.render to render view templates and add them to the scene, if needed */
+
+   /* setup widgets here */
+   this.controller.setupWidget(Mojo.Menu.commandMenu, {
+      	spacerHeight: 0,
+   		menuClass: 'no-fade'
+   	}, this.ViewMenuModel = {
+      	visible: true,
+   		items: [{
+      		label: "M",
+   			command: "menu"
+   		}]
+   	}
+	);
+   /* add event handlers to listen to events from widgets */
 	this.controller.pushCommander(this.handleCommand.bind(this));
 };
 
 NavitAssistant.prototype.activate = function(event){
-    /* put in event handlers here that should only be in effect when this scene is active. For
-     example, key handlers that are observing the document */
-    this.controller.enableFullScreenMode(true);
+   /* put in event handlers here that should only be in effect when this scene is active. For
+     	example, key handlers that are observing the document */
+   this.controller.enableFullScreenMode(true);
 };
 
 NavitAssistant.prototype.deactivate = function(event){
-    /* remove any event handlers you added in activate and do any other cleanup that should happen before
-     this scene is popped or another scene is pushed on top */
+   /* remove any event handlers you added in activate and do any other cleanup that should happen before
+     	this scene is popped or another scene is pushed on top */
 };
 
 NavitAssistant.prototype.cleanup = function(event){
-    /* this function should do any cleanup needed before the scene is destroyed as 
-     a result of being popped off the scene stack */
+   /* this function should do any cleanup needed before the scene is destroyed as 
+     	a result of being popped off the scene stack */
 };
 
 NavitAssistant.prototype.handleCommand = function(event){
-    if (event.type == Mojo.Event.command) {
-        switch (event.command) {
-            case "menu":
-                this.controller.stageController.swapScene("MapManager");
-                break;
-        }
-    }
+   if (event.type == Mojo.Event.command) {
+      switch (event.command) {
+         case "menu":
+            this.controller.stageController.swapScene("MapManager");
+            break;
+      }
+   }
 };
