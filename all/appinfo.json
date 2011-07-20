@@ -6,5 +6,12 @@
 	"main": "index.html",
 	"icon": "icon.png",
 	"title": "Navit Maps",
-	"mimeTypes": [{"scheme": "mapto"}, {"scheme": "maploc"},{"scheme": "telenav"}]
+	"mimeTypes": [{"scheme": "mapto"}, {"scheme": "maploc"},{"scheme": "telenav"}],
+	"universalSearch":{
+			      "search" :  {
+        			  "displayName":"Navit",
+        			  "url":"org.webosinternals.navit-maps",
+        			  "launchParam":{"target":"mapto:#{searchTerms}"}
+      				}
+  			}
 }

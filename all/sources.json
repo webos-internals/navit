@@ -25,5 +25,9 @@
     {
         "scenes": "MapManager",
         "source": "app/assistants/MapManager-assistant.js"
+    },
+    {
+        "scenes": "StartNavit",
+        "source": "app/assistants/StartNavit-assistant.js"
     }
 ]

@@ -9,6 +9,15 @@ function AppAssistant(appController) {
 
 AppAssistant.prototype.setup = function() {
 	Mojo.Log.info("AppAssistant setup");
+
+	/*for testing 
+	Mojo.Log.info("set test values");
+	destination=new Object();;
+	destination.addr="Buchenbuschweg, 61389 Schmitten, Germany";
+	destination.lng="50.93816993298976"; //"8.4559674";
+	destination.lat="6.95383975571782"; //"50.2737100";
+
+	G.destination=destination; */
 }
 
 // -------------------------------------------------------
@@ -26,6 +35,13 @@ AppAssistant.prototype.handleLaunch = function (launchParameters) {
 		   "maploc:" Adresse anzeigen
 		   */
 		Mojo.Log.info("launchParameters target is %s", launchParameters.target);
+
+		destination=new Object();;
+		destination.addr=launchParameters.target;
+		destination.lng=""; //"8.4559674";
+		destination.lat=""; //"50.2737100";
+		G.destination=destination
+
 	} else {/* query kann auch eine Adresse beinhalten
 		   	  this.controller.serviceRequest('palm://com.palm.applicationManager', {method: 'open',parameters: {
 		   	  id:"com.palm.app.maps",
@@ -62,6 +78,17 @@ AppAssistant.prototype.handleLaunch = function (launchParameters) {
 		}
 		if (launchParameters.daddr != undefined) {
 			Mojo.Log.info(" launchParameters daddr is: %s", launchParameters.daddr);
+
+			var foundIndex = launchParameters.daddr.indexOf(" ");
+			if (foundIndex >= 0) {
+				destination=new Object();;
+				destination.addr="Unknown";
+				destination.lng=launchParameters.daddr.substr(foundIndex + 1); //"8.4559674";
+				destination.lat=launchParameters.daddr.substr(0,foundIndex - 1); //"50.2737100";
+				G.destination=destination
+			}
+
+
 		}
 		if (launchParameters.location && launchParameters.location.lat && launchParameters.location.lng) {	
 			/* passing location parameter from global search
@@ -69,8 +96,13 @@ AppAssistant.prototype.handleLaunch = function (launchParameters) {
 			   lng = longitude in degrees (float)
 			   acc = accuracy in meters - optional (float)
 			   age = age of fix in seconds - optional (int) */
-			Mojo.Log.info("launchParameters.location.lat,lng is: %s, %s",
-					launchParameters.location.lat,launchParameters.location.lng);
+				Mojo.Log.info("launchParameters.location.lat,lng is: %s, %s", launchParameters.location.lat,launchParameters.location.lng);
+				destination=new Object();;
+				destination.addr="Unknown";
+				destination.lng=launchParameters.location.lng; //"8.4559674";
+				destination.lat=launchParameters.location.lat; //"50.2737100";
+				G.destination=destination
+
 			if (launchParameters.location.acc) {
 				Mojo.Log.info("launchParameters.location.acc is: %s", launchParameters.location.acc);
 			}
@@ -78,7 +110,7 @@ AppAssistant.prototype.handleLaunch = function (launchParameters) {
 				Mojo.Log.info("launchParameters.location.age is: %s", launchParameters.location.age);
 			}
 
-			G.launchParameters = launchParameters;
+			
 		}
 	}
 
@@ -91,3 +123,6 @@ AppAssistant.prototype.handleLaunch = function (launchParameters) {
    }
 }
 
+
+AppAssistant.prototype.geocode = function(adr) {
+}
