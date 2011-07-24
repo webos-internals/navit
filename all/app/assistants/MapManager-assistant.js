@@ -37,12 +37,42 @@ MapManagerAssistant.prototype.setup = function(){
    this.controller.listen("MapList", Mojo.Event.listDelete, this.MapListDeleteHandler);
 
    this.controller.pushCommander(this.handleCommand.bind(this));
+   
+   this.controller.setupWidget("search_divSpinner", { spinnerSize : "large" }, { spinning: true } );
+   
+    // setup menu
+    this.menuModel =
+	{
+	    visible: true,
+	    items:
+	    [
+		    {
+				label: $L("Changes"),
+				command: 'do-changes'
+		    },
+		    {
+				label: $L("Preferences"),
+				command: 'do-prefs'
+		    },
+		    {
+				label: $L("Help"),
+				command: 'do-help'
+		    }
+	     ]
+	};
+	
+    // setup menu
+    this.controller.setupWidget(Mojo.Menu.appMenu, { omitDefaultItems: true }, this.menuModel);
+
+   
 };
 
 MapManagerAssistant.prototype.activate = function(event){
    /* put in event handlers here that should only be in effect when this scene is active. For
      	example, key handlers that are observing the document */
+	$("search_divScrim").show();
    G.Maps.updateMaps(this.GetMapsCallback.bind(this));
+   	$("search_divScrim").hide();
 };
 
 MapManagerAssistant.prototype.deactivate = function(event){
@@ -76,6 +106,21 @@ MapManagerAssistant.prototype.MapListDelete = function(event){
 };
 
 MapManagerAssistant.prototype.handleCommand = function(event){
+    if (event.type == Mojo.Event.command) {
+		switch (event.command) {
+			case 'do-changes':
+				this.controller.stageController.pushScene('startup', true);
+				break;
+			case 'do-prefs':
+				this.controller.stageController.pushScene('preferences');
+				break;
+			
+			case 'do-help':
+				this.controller.stageController.pushScene('help');
+				break;
+		}
+    }	
+	
    //test for Mojo.Event.back, not Mojo.Event.command..
 /*
    if (event.type == Mojo.Event.back) {

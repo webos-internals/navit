@@ -12,27 +12,30 @@ function StartNavitAssistant(){
 StartNavitAssistant.prototype.setup = function(){
    /* this function is for setup tasks that have to happen when the scene is first created */
    /* use Mojo.View.render to render view templates and add them to the scene, if needed */
-   
-	/* setup widgets here 
+
+	// setup widgets here 
+	this.LocListItems = [{Name: "searching ...", Lng:"" ,Lat:""}];
+	this.LocList = { items: this.LocListItems };
    this.controller.setupWidget("LocList", {
       	listTemplate: "StartNavit/LocListTemplate",
    		itemTemplate: "StartNavit/LocListRowTemplate",
+   		swipeToDelete: false,
    		autoconfirmDelete: false,
    		renderlimit: 40,
    		reordeable: false,
    		uniquenessProperty: "Index"
-   	}, this.LocListModel = {
-      items: []
-   	}
+   	}, this.LocList
 	);
 
    // add event handlers to listen to events from widgets 
    this.LocListTapHandler = this.LocListTap.bindAsEventListener(this);
    this.controller.listen("LocList", Mojo.Event.listTap, this.LocListTapHandler);
 
-   this.controller.pushCommander(this.handleCommand.bind(this)); */
+   this.controller.pushCommander(this.handleCommand.bind(this));
+   
+   this.controller.setupWidget("search_divSpinner", { spinnerSize : "large" }, { spinning: true } );
 
-	// check parameter 
+	// check parameter
 	if (G.destination.lng=="" || G.destination.lat==""){
 		var adr;
 		var route="0"; //0 - show on map, 1 -route to target
@@ -54,16 +57,18 @@ StartNavitAssistant.prototype.setup = function(){
 				Mojo.Log.info("target: %s", adr);	
 			}
 		}
-		StartNavitAssistant.prototype.geocode(adr, route);
+		G.destination.route=route; //0 - show on map, 1 -route to target
+		this.geocode(adr);
 	} else  {
-		G.destionation.route="0"; //0 - show on map, 1 -route to target
+		G.destination.route="0"; //0 - show on map, 1 -route to target
 		StartNavitAssistant.prototype.openNavit(G.destination);
 	} 
 };
 
 StartNavitAssistant.prototype.activate = function(event){
    /* put in event handlers here that should only be in effect when this scene is active. For
-     	example, key handlers that are observing the document */
+     	example, key handlers that are observing the document */ 
+
 };
 
 StartNavitAssistant.prototype.deactivate = function(event){
@@ -74,21 +79,28 @@ StartNavitAssistant.prototype.deactivate = function(event){
 StartNavitAssistant.prototype.cleanup = function(event){
    /* this function should do any cleanup needed before the scene is destroyed as 
      	a result of being popped off the scene stack */
-   //this.controller.stopListening("LocList", Mojo.Event.listTap, this.LocListTapHandler);
+   this.controller.stopListening("LocList", Mojo.Event.listTap, this.LocListTapHandler);
 };
 
 StartNavitAssistant.prototype.LocListTap = function(event){
    /* Location selected */
+  	Mojo.Log.info("LocListTap: %s", event.item.Name);
+  	G.destination.addr=event.item.Name;
+	G.destination.lng =event.item.Lng;
+	G.destination.lat =event.item.Lat;
+	StartNavitAssistant.prototype.openNavit(G.destination);
+	
 };
 
 
-StartNavitAssistant.prototype.geocode = function(adr, route) {
+StartNavitAssistant.prototype.geocode = function(adr) {
 	var url;
-	destination=new Object();
 
-	destination.route=route;
 	url=StartNavitAssistant.googleGeocodeURL + adr;
 	Mojo.Log.info("gocode url: %s", url);
+
+	//show spinner
+	$("search_divScrim").show();
 	
 	var request = new Ajax.Request(url, {
         method: 'get',
@@ -98,22 +110,44 @@ StartNavitAssistant.prototype.geocode = function(adr, route) {
 			   var xmlstring = response.responseText;   
 			   // Convert the string to an XML object
 			   var xmlobject = (new DOMParser()).parseFromString(xmlstring, "text/xml");
+				var elements = xmlobject.getElementsByTagName("result");
+				Mojo.Log.info("Results: %i",elements.length);
+				if (elements.length==0){
+		            Mojo.Log.error("The geocoding service did not find a location.");
+					Mojo.Controller.errorDialog("The geocoding service did not find a location.");
+				} else if (elements.length==1){ //only one result => start Navit
+  					G.destination.addr=elements[0].getElementsByTagName("formatted_address")[0].childNodes[0].nodeValue;
+					G.destination.lng =elements[0].getElementsByTagName("lng")[0].childNodes[0].nodeValue;
+					G.destination.lat =elements[0].getElementsByTagName("lat")[0].childNodes[0].nodeValue;
+					StartNavitAssistant.prototype.openNavit(G.destination);	
+				} else { //Clear list and add the resuts
+					this.LocListItems.pop();
+					for(var i = 0; i < elements.length; i++) {
+						var element = elements[i];
+						var adr = element.getElementsByTagName("formatted_address")[0].childNodes[0].nodeValue;
+						Mojo.Log.info("gocoded[%i]: %s",i, adr);
+						var lng = element.getElementsByTagName("lng")[0].childNodes[0].nodeValue;
+						var lat = element.getElementsByTagName("lat")[0].childNodes[0].nodeValue;
+						var location = {
+							Name : adr,
+							Lng : lng,
+							Lat : lat
+						};
+						this.LocListItems.push(location);
+					}
+					//Mojo.Log.info("LocListItems: " + Object.toJSON(this.LocListItems));
+					this.controller.modelChanged(this.LocList, this);
+					//hide spinner
+					$("search_divScrim").hide();  
 
-			   var adr=xmlobject.getElementsByTagName("formatted_address")[0];
-				Mojo.Log.info("gocode adr: %s", adr.childNodes[0].nodeValue);
-			   destination.addr=adr.childNodes[0].nodeValue;
-				var lng=xmlobject.getElementsByTagName("lng")[0];
-				destination.lng=lng.childNodes[0].nodeValue;
-				var lat=xmlobject.getElementsByTagName("lat")[0];
-				destination.lat=lat.childNodes[0].nodeValue;
-				//Start Navit
-				StartNavitAssistant.prototype.openNavit(destination);
-        },
+				}
+
+        }.bind(this),
         onFailure: function(response){
             Mojo.Log.error("geocode service error: %s", response.statusText);
-        }
+			Mojo.Controller.errorDialog("geocode service error: %s", response.statusText);
+        }.bind(this),
     });	
-
 }
 
 StartNavitAssistant.prototype.openNavit = function(dest){

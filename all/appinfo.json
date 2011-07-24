@@ -1,6 +1,6 @@
 {
 	"id": "org.webosinternals.navit-maps",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"vendor": "Navit Project",
 	"type": "web",
 	"main": "index.html",

@@ -1,4 +1,5 @@
-// vim: sw=3 ts=3
+// get the cookies
+var vers =  new versionCookie();
 
 G = {};	// global data goes here
 
@@ -121,8 +122,4 @@ AppAssistant.prototype.handleLaunch = function (launchParameters) {
 		Mojo.Log.info("launchParams: %j", launchParams);
 		Mojo.Log.info("launchParamsJSON: %j", launchParams.evalJSON());
    }
-}
-
-
-AppAssistant.prototype.geocode = function(adr) {
 }

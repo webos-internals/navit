@@ -11,10 +11,14 @@ StageAssistant.prototype.setup = function() {
 	
 	if (G.destination) {
 		this.controller.pushScene("StartNavit");
-	}
-	else {
-		G.Maps = new Maps();
-		G.Maps.updateMaps(this.updateMapsCB.bind(this));
+	} else {
+		vers.init();
+    	if (vers.showStartupScene()) {
+			this.controller.pushScene('startup');
+    	} else {
+			G.Maps = new Maps();
+			G.Maps.updateMaps(this.updateMapsCB.bind(this));
+		}
 	}
 };
 
