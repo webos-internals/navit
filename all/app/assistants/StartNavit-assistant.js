@@ -159,8 +159,8 @@ StartNavitAssistant.prototype.openNavit = function(dest){
 		
 	//Route to or show position?
 	if (dest.route=="0"){ //show on map
-		stFile='/media/internal/appdata/org.webosinternals.navit/center.txt';
-		stText='mg: ' + dest.lng + " " + dest.lat + "\n";	
+		stFile='/media/internal/appdata/org.webosinternals.navit/command.txt';
+		stText='mg: ' + dest.lng + " " + dest.lat + "\nnavit.pitch=0;navit.tracking=0;navit.follow_cursor=0\n";	
 		writeMode=false;
 	} else { //route to target
 		stFile='/media/internal/appdata/org.webosinternals.navit/destination.txt';
