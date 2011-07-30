@@ -3,7 +3,7 @@
 StartNavitAssistant.googleGeocodeURL = "http://maps.googleapis.com/maps/api/geocode/xml?sensor=true&address=";
 
 function StartNavitAssistant(){
-   /* this is the creator function for your scene assistant object. It will be passed all the 
+   /* this is the creator function for your scene assistant object. It will be passed all the
      	additional parameters (after the scene name) that were passed to pushScene. The reference
      	to the scene controller (this.controller) has not be established yet, so any initialization
      	that needs the scene controller should be done in the setup function below. */
@@ -13,7 +13,7 @@ StartNavitAssistant.prototype.setup = function(){
    /* this function is for setup tasks that have to happen when the scene is first created */
    /* use Mojo.View.render to render view templates and add them to the scene, if needed */
 
-	// setup widgets here 
+	// setup widgets here
 	this.LocListItems = [{Name: "searching ...", Lng:"" ,Lat:""}];
 	this.LocList = { items: this.LocListItems };
    this.controller.setupWidget("LocList", {
@@ -27,12 +27,12 @@ StartNavitAssistant.prototype.setup = function(){
    	}, this.LocList
 	);
 
-   // add event handlers to listen to events from widgets 
+   // add event handlers to listen to events from widgets
    this.LocListTapHandler = this.LocListTap.bindAsEventListener(this);
    this.controller.listen("LocList", Mojo.Event.listTap, this.LocListTapHandler);
 
    this.controller.pushCommander(this.handleCommand.bind(this));
-   
+
    this.controller.setupWidget("search_divSpinner", { spinnerSize : "large" }, { spinning: true } );
 
 	// check parameter
@@ -44,17 +44,17 @@ StartNavitAssistant.prototype.setup = function(){
 		if (foundIndex >= 0) {
 			route="1";
 			adr = G.destination.addr.substr(foundIndex + "mapto:".length);
-			
-			Mojo.Log.info("target+mapto: %s", adr);	
+
+			Mojo.Log.info("target+mapto: %s", adr);
 		} else {
 			foundIndex = G.destination.addr.indexOf("maploc:");
 			if (foundIndex >= 0) {
 				adr = G.destination.addr.substr(foundIndex + "maploc:".length);
-				Mojo.Log.info("target+maploc: %s", adr);	
+				Mojo.Log.info("target+maploc: %s", adr);
 			} else {
 				// use entire URL string
 				adr = G.destination.addr;
-				Mojo.Log.info("target: %s", adr);	
+				Mojo.Log.info("target: %s", adr);
 			}
 		}
 		G.destination.route=route; //0 - show on map, 1 -route to target
@@ -62,12 +62,15 @@ StartNavitAssistant.prototype.setup = function(){
 	} else  {
 		G.destination.route="0"; //0 - show on map, 1 -route to target
 		StartNavitAssistant.prototype.openNavit(G.destination);
-	} 
+	}
 };
 
 StartNavitAssistant.prototype.activate = function(event){
    /* put in event handlers here that should only be in effect when this scene is active. For
-     	example, key handlers that are observing the document */ 
+     	example, key handlers that are observing the document */
+	if (this.controller.stageController.setWindowOrientation) {
+		this.controller.stageController.setWindowOrientation("free");
+	}
 
 };
 
@@ -77,7 +80,7 @@ StartNavitAssistant.prototype.deactivate = function(event){
 };
 
 StartNavitAssistant.prototype.cleanup = function(event){
-   /* this function should do any cleanup needed before the scene is destroyed as 
+   /* this function should do any cleanup needed before the scene is destroyed as
      	a result of being popped off the scene stack */
    this.controller.stopListening("LocList", Mojo.Event.listTap, this.LocListTapHandler);
 };
@@ -89,7 +92,7 @@ StartNavitAssistant.prototype.LocListTap = function(event){
 	G.destination.lng =event.item.Lng;
 	G.destination.lat =event.item.Lat;
 	StartNavitAssistant.prototype.openNavit(G.destination);
-	
+
 };
 
 
@@ -101,13 +104,13 @@ StartNavitAssistant.prototype.geocode = function(adr) {
 
 	//show spinner
 	$("search_divScrim").show();
-	
+
 	var request = new Ajax.Request(url, {
         method: 'get',
         evalJSON: false,
 		  onSuccess: function(response){
 				// Use responseText, not responseXML!! try: reponseJSON
-			   var xmlstring = response.responseText;   
+			   var xmlstring = response.responseText;
 			   // Convert the string to an XML object
 			   var xmlobject = (new DOMParser()).parseFromString(xmlstring, "text/xml");
 				var elements = xmlobject.getElementsByTagName("result");
@@ -119,7 +122,7 @@ StartNavitAssistant.prototype.geocode = function(adr) {
   					G.destination.addr=elements[0].getElementsByTagName("formatted_address")[0].childNodes[0].nodeValue;
 					G.destination.lng =elements[0].getElementsByTagName("lng")[0].childNodes[0].nodeValue;
 					G.destination.lat =elements[0].getElementsByTagName("lat")[0].childNodes[0].nodeValue;
-					StartNavitAssistant.prototype.openNavit(G.destination);	
+					StartNavitAssistant.prototype.openNavit(G.destination);
 				} else { //Clear list and add the resuts
 					this.LocListItems.pop();
 					for(var i = 0; i < elements.length; i++) {
@@ -138,7 +141,7 @@ StartNavitAssistant.prototype.geocode = function(adr) {
 					//Mojo.Log.info("LocListItems: " + Object.toJSON(this.LocListItems));
 					this.controller.modelChanged(this.LocList, this);
 					//hide spinner
-					$("search_divScrim").hide();  
+					$("search_divScrim").hide();
 
 				}
 
@@ -147,7 +150,7 @@ StartNavitAssistant.prototype.geocode = function(adr) {
             Mojo.Log.error("geocode service error: %s", response.statusText);
 			Mojo.Controller.errorDialog("geocode service error: %s", response.statusText);
         }.bind(this),
-    });	
+    });
 }
 
 StartNavitAssistant.prototype.openNavit = function(dest){
@@ -156,16 +159,16 @@ StartNavitAssistant.prototype.openNavit = function(dest){
 	var writeMode;
 
 	Mojo.Log.info("openNavit adr:%s lng:%s lat:%s type:%s", dest.addr, dest.lng, dest.lat,dest.route);
-		
+
 	//Route to or show position?
 	if (dest.route=="0"){ //show on map
 		stFile='/media/internal/appdata/org.webosinternals.navit/command.txt';
-		stText='mg: ' + dest.lng + " " + dest.lat + "\nnavit.pitch=0;navit.tracking=0;navit.follow_cursor=0\n";	
+		stText='navit.pitch=0;navit.tracking=0;navit.follow_cursor=0;navit.set_center("'+dest.lng + " " + dest.lat+'");';
 		writeMode=false;
 	} else { //route to target
-		stFile='/media/internal/appdata/org.webosinternals.navit/destination.txt';
-		stText='type=former_destination label="'+ dest.addr +'"\nmg: ' + dest.lng + " " + dest.lat + "\n";
-		writeMode=true;
+		stFile='/media/internal/appdata/org.webosinternals.navit/command.txt';
+		stText='navit.set_destination(\"'+dest.lng + " " + dest.lat+'\",\"'+dest.addr.replace(/["']/g, ' ')+'\");';
+		writeMode=false;
 	}
 	this.request = new Mojo.Service.Request('palm://ca.canucksoftware.filemgr', {
 			method: 'write',
