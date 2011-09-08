@@ -4,6 +4,7 @@
 	height: 74px;
 	background: url(../icon.png) center center no-repeat;
 }
+
 .main .palm-page-header-wrapper .title.main {
 	left: 10px;
 	font-size: 30px;
@@ -46,6 +47,7 @@
 }
 
 .mapDir {
+	font-style: italic;
 	background: url(../images/folder.png) right center no-repeat;
 }
 
