@@ -10,7 +10,8 @@ function MapDownloaderAssistant(listItems, need_maps){
       this.PredefinedAreas = listItems;
    }
    else {
-      this.PredefinedAreas = [];
+      this.PredefinedAreas = [{Name: "loading map list ..."}];
+      this.loadList = true;
    }
 }
 
@@ -29,7 +30,9 @@ MapDownloaderAssistant.prototype.setup = function(){
    }, this.MapDefinitionListModel = {
       items: this.PredefinedAreas
    });
-
+ 
+   	this.controller.setupWidget("search_divSpinner", { spinnerSize : "large" }, { spinning: true } );
+  
    /* add event handlers to listen to events from widgets */
    this.MapDefinitionListTapHandler = this.MapDefinitionListTap.bindAsEventListener(this);
    this.controller.listen("MapDefinitionList", Mojo.Event.listTap, this.MapDefinitionListTapHandler);
@@ -40,8 +43,11 @@ MapDownloaderAssistant.prototype.setup = function(){
 MapDownloaderAssistant.prototype.activate = function(event){
    /* put in event handlers here that should only be in effect when this scene is active. For
      	example, key handlers that are observing the document */
-   if (this.MapDefinitionListModel.items.length == 0) {
+   if (this.loadList == true) {
+   	  //show spinner
+	  $("search_divScrim").show();
       (new PredefinedAreas()).getAreas(this.ListCallback.bind(this));
+	  this.loadList = false;
    }
    if (this.WeNeedMaps) {
       this.controller.showAlertDialog({
@@ -69,6 +75,8 @@ MapDownloaderAssistant.prototype.cleanup = function(event){
 
 MapDownloaderAssistant.prototype.ListCallback = function(list){
    this.MapDefinitionListModel.items = list;
+   //hide spinner
+   $("search_divScrim").hide();
    this.controller.modelChanged(this.MapDefinitionListModel);
 };
 
