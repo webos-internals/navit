@@ -33,5 +33,5 @@
 <osd enabled="yes" type="text" label="${navigation.item[1].street_name} ${navigation.item[1].street_name_systematic}" x="110" y="-30" w="370" h="30" align="4" font_size="350" background_color="#000000FF"/>
 <osd enabled="yes" type="text" label="${navigation.item[1].length[named]}" x="0" y="-26" w="110" h="26" align="15" background_color="#000000FF" font_size="350"/>
 <osd enabled="yes" type="navigation_next_turn"	x="20" y="-97"	w="64"	h="64"	align="0" icon_src="$NAVIT_SHAREDIR/xpm/%s_bk_64_64.png" background_color="#FFFFFFFF" />
-<osd enabled="yes" type="speed_cam" w="206" h="20" x="114" y="-94" announce_on="1" background_color="#000000cc" font_size="220" label="${camera_type} | ${distance} | ${speed_limit}km/h" />
+<osd enabled="yes" type="speed_cam" w="206" h="20" x="114" y="-74" announce_on="1" background_color="#000000cc" font_size="220" label="${camera_type} | ${distance} | ${speed_limit}km/h" />
 
