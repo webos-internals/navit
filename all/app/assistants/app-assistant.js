@@ -2,6 +2,14 @@
 var vers =  new versionCookie();
 
 G = {};	// global data goes here
+G.isTouchPad = function(){
+    if(Mojo.Environment.DeviceInfo.modelNameAscii.indexOf("ouch")>-1) {
+        return true;
+    }
+    if(Mojo.Environment.DeviceInfo.screenWidth==1024){ return true; }
+    if(Mojo.Environment.DeviceInfo.screenHeight==1024){ return true; }
+    return false;
+};
 
 function AppAssistant(appController) {
 	Mojo.Log.info("AppAssistant");

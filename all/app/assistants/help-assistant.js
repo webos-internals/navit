@@ -57,6 +57,33 @@ HelpAssistant.prototype.setup = function()
 	this.backTapHandler = this.backTap.bindAsEventListener(this);
 	this.controller.listen(this.backElement, Mojo.Event.tap, this.backTapHandler);
 	
+    /* Add Back button for TouchPad */
+	if(G.isTouchPad()){
+		var menuModel = {
+				visible: true,
+				items: [
+					{ icon: "back", command: "goBack"}
+				]
+			};
+		this.controller.setupWidget(Mojo.Menu.commandMenu,
+			this.attributes = {
+				spacerHeight: 0,
+				menuClass: 'no-fade'
+			},
+			menuModel
+		);   
+	}
+	this.controller.pushCommander(this.handleCommand.bind(this));
+	
+};
+HelpAssistant.prototype.handleCommand = function(event){
+    if (event.type == Mojo.Event.command) {
+		switch (event.command) {
+		    case 'goBack':
+		        this.controller.stageController.popScene();
+		        break;
+		}
+    }	
 };
 HelpAssistant.prototype.backTap = function(event)
 {

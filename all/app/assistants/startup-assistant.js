@@ -11,6 +11,10 @@ function StartupAssistant(changelog)
     this.newMessages =
 	[
 	 // Don't forget the comma on all but the last entry
+	 { version: '0.0.6', log: [ 'Added support for Touchpad UI' ] },
+	 { version: '0.0.5', log: [ 'Download map list from Navit server' ] },
+	 { version: '0.0.4', log: [ 'Bug Fix' ] },
+	 { version: '0.0.3', log: [ 'Bug Fix' ] },
 	 { version: '0.0.2', log: [ 'Added support to select Navit as default contacts application' ] },
 	 { version: '0.0.1', log: [ 'First Public Release' ] }
 	 ];

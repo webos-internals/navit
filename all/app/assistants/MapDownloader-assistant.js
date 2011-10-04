@@ -34,6 +34,23 @@ MapDownloaderAssistant.prototype.setup = function(){
    this.MapDefinitionListTapHandler = this.MapDefinitionListTap.bindAsEventListener(this);
    this.controller.listen("MapDefinitionList", Mojo.Event.listTap, this.MapDefinitionListTapHandler);
 
+    /* Add Back button for TouchPad */
+	if(G.isTouchPad()){
+		var menuModel = {
+				visible: true,
+				items: [
+					{ icon: "back", command: "goBack"}
+				]
+			};
+		this.controller.setupWidget(Mojo.Menu.commandMenu,
+			this.attributes = {
+				spacerHeight: 0,
+				menuClass: 'no-fade'
+			},
+			menuModel
+		);   
+	}
+
    this.controller.pushCommander(this.handleCommand.bind(this));
 };
 
@@ -110,7 +127,7 @@ MapDownloaderAssistant.prototype.MapDefinitionListTap = function(event){
 
 MapDownloaderAssistant.prototype.handleCommand = function(event){
    //test for Mojo.Event.back, not Mojo.Event.command..
-   if (event.type == Mojo.Event.back) {
+   if (event.type == Mojo.Event.back || (event.type == Mojo.Event.command && event.command == 'goBack')) {
       if (this.controller.stageController.getScenes().length == 1) {
          event.preventDefault();
          event.stopPropagation();

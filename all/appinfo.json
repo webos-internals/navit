@@ -1,11 +1,12 @@
 {
 	"id": "org.webosinternals.navit-maps",
-	"version": "0.0.2",
+	"version": "0.0.6",
 	"vendor": "Navit Project",
 	"type": "web",
 	"main": "index.html",
 	"icon": "icon.png",
 	"title": "Navit Maps",
+	"uiRevision": 2,
 	"mimeTypes": [{"scheme": "mapto"}, {"scheme": "maploc"},{"scheme": "telenav"}],
 	"universalSearch":{
 			      "search" :  {
