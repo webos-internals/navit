@@ -21,6 +21,23 @@ MapDownloadProgressAssistant.prototype.setup = function(){
       	value: 0,
 			disabled: false
    });
+   
+   /* Add Back button for TouchPad */
+	if(G.isTouchPad()){
+		var menuModel = {
+				visible: true,
+				items: [
+					{ icon: "back", command: "goBack"}
+				]
+			};
+		this.controller.setupWidget(Mojo.Menu.commandMenu,
+			this.attributes = {
+				spacerHeight: 0,
+				menuClass: 'no-fade'
+			},
+			menuModel
+		);   
+	}
 
    /* add event handlers to listen to events from widgets */
    this.Active = true;
@@ -28,6 +45,7 @@ MapDownloadProgressAssistant.prototype.setup = function(){
    this.controller.pushCommander(this.handleCommand.bind(this));
 
    G.Maps.download(this.Item, this.updateProgress.bind(this));
+   
 };
 
 MapDownloadProgressAssistant.prototype.activate = function(event){
@@ -49,7 +67,7 @@ MapDownloadProgressAssistant.prototype.cleanup = function(event){
 
 MapDownloadProgressAssistant.prototype.handleCommand = function(event){
    //test for Mojo.Event.back, not Mojo.Event.command..
-   if (event.type == Mojo.Event.back && this.Active) {
+   if ((event.type == Mojo.Event.back || (event.type == Mojo.Event.command && event.command == 'goBack'))&& this.Active) {
       event.preventDefault();
       event.stopPropagation();
       this.controller.showAlertDialog({

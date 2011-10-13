@@ -114,7 +114,17 @@ MapManagerAssistant.prototype.handleCommand = function(event){
 				this.controller.stageController.pushScene('startup', true);
 				break;
 			case 'do-prefs':
-				this.controller.stageController.pushScene('preferences');
+				//this.controller.stageController.pushScene('preferences');
+				this.controller.showAlertDialog({
+					onChoose:	function(value) {},
+					title:		'Information',
+					message:	'Function not implemented',
+					choices:	[{
+						label:	'OK', 
+						value:	'OK', 
+						type:	'dismiss'
+					}]
+				});
 				break;
 			
 			case 'do-help':
