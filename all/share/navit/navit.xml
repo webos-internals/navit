@@ -86,6 +86,10 @@ Navigation</text></img>
 			<a name='Route'><text>Route</text>
 				<img src='gui_actions' onclick='route_description()'><text>Description</text></img>
 				<img src='gui_actions' onclick='route_height_profile()'><text>Height Profile</text></img>
+				<img cond='navit.route.route_status&amp;52' src='gui_stop' onclick='navit.route_remove_last_waypoint()'><text>Drop last 
+Waypoint</text></img>
+				<img cond='navit.route.route_status&amp;52' src='gui_stop' onclick='navit.route_remove_next_waypoint()'><text>Drop next 
+Waypoint</text></img>
 			</a>
 <text>Advanced</text>
 <text>Lock on
@@ -107,8 +111,8 @@ Vehicle</text>
 		<!-- Commands include gui_internal_menu, gui_internal_fullscreen, zoom_in and zoom_out.
 			Usage of negative values change the button origins. x="0" y="0" specifies the top left, x="-0" y="-0" the bottom right corner.
 			It's always the top left corner of the icon, so you need to consider the icon's size when you enter the values. -->
-		<osd enabled="no" type="button" x="0" y="0" command="gui.fullscreen=!gui.fullscreen" src="toggle_fullscreen.xpm"/> 
-		<osd enabled="no" type="button" x="-96" y="0" command="gui.menu(1)" src="menu.xpm"/>
+		<osd enabled="no" type="button" x="0" y="0" command="gui.fullscreen=!gui.fullscreen" src="toggle_fullscreen.png"/>
+		<osd enabled="no" type="button" x="-96" y="0" command="gui.menu(1)" src="menu.png"/>
 		<osd enabled="no" type="button" x="-96" y="-96" command="zoom_in()" src="zoom_in.png"/>
 		<osd enabled="no" type="button" x="0" y="-96" command="zoom_out()" src="zoom_out.png"/> 
 
@@ -659,6 +663,10 @@ Vehicle</text>
 					<polyline color="#79c691"/>
 					<text text_size="5"/>
 				</itemgra>
+				<itemgra item_types="poly_meadow" order="0-">
+					<polygon color="#c7f1a3"/>
+					<polyline color="#79c691"/>
+				</itemgra>
 				<itemgra item_types="poly_town" order="0-">
 					<polygon color="#ffc895"/>
 					<polyline color="#ebb481"/>
@@ -980,7 +988,7 @@ Vehicle</text>
 					<polyline color="#ffffff" width="7" dash="7,15"/>
 					<polyline color="#800000" width="5" dash="7,15"/>
 				</itemgra>
-				<itemgra item_types="track_unpaved" order="10-">
+				<itemgra item_types="track_unpaved,track_ground,path" order="10-">
 					<polyline color="#000000" width="1"/>
 				</itemgra>
 				<itemgra item_types="bridleway" order="10-">
@@ -1791,10 +1799,10 @@ Vehicle</text>
 			</layer>
 			<layer name="POI Symbols">
 				<itemgra item_types="mini_roundabout" order="12-">
-					<icon src="mini_roundabout.xpm"/>
+					<icon src="mini_roundabout.png"/>
 				</itemgra>
 				<itemgra item_types="turning_circle" order="12-">
-					<icon src="mini_roundabout.xpm"/>
+					<icon src="mini_roundabout.png"/>
 				</itemgra>
 				<itemgra item_types="poi_airport" order="5-">
 					<icon src="airport.png"/>
@@ -1890,13 +1898,13 @@ Vehicle</text>
 					<icon src="bussines_service.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_car_rent" order="12-">
-					<icon src="car_rent.xpm"/>
+					<icon src="car_rent.png"/>
 				</itemgra>
 				<itemgra item_types="poi_car_wash" order="12-">
 					<icon src="car_wash.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_casino" order="12-">
-					<icon src="casino.xpm"/>
+					<icon src="casino.png"/>
 				</itemgra>
 				<itemgra item_types="poi_cemetery" order="12-">
 					<icon src="cemetery.xpm"/>
@@ -1920,7 +1928,7 @@ Vehicle</text>
 					<icon src="crossing.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_dam" order="12-">
-					<icon src="dam.xpm"/>
+					<icon src="dam.png"/>
 				</itemgra>
 				<itemgra item_types="poi_danger_area" order="12-">
 					<icon src="danger_16_16.png"/>
@@ -1929,16 +1937,16 @@ Vehicle</text>
 					<icon src="dangerous.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_daymark" order="12-">
-					<icon src="daymark.xpm"/>
+					<icon src="daymark.png"/>
 				</itemgra>
 				<itemgra item_types="poi_diving" order="12-">
 					<icon src="diving.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_drinking_water" order="13-">
-					<icon src="drinking_water.xpm"/>
+					<icon src="drinking_water.png"/>
 				</itemgra>
 				<itemgra item_types="poi_emergency" order="12-">
-					<icon src="emergency.xpm"/>
+					<icon src="emergency.png"/>
 				</itemgra>
 				<itemgra item_types="poi_fair" order="12-">
 					<icon src="fair.xpm"/>
@@ -1974,7 +1982,7 @@ Vehicle</text>
 					<icon src="icesport.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_information" order="12-">
-					<icon src="information.xpm"/>
+					<icon src="information.png"/>
 				</itemgra>
 				<itemgra item_types="poi_justice" order="12-">
 					<icon src="justice.png"/>
@@ -2010,7 +2018,7 @@ Vehicle</text>
 					<icon src="marine_type.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_mark" order="12-">
-					<icon src="mark.xpm"/>
+					<icon src="mark.png"/>
 				</itemgra>
 				<itemgra item_types="poi_military" order="11-">
 					<icon src="military.png"/>
@@ -2076,19 +2084,19 @@ Vehicle</text>
 					<icon src="scenic_area.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_school" order="12-">
-					<icon src="school.xpm"/>
+					<icon src="school.png"/>
 				</itemgra>
 				<itemgra item_types="poi_service" order="12-">
 					<icon src="service.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_apparel" order="12-">
-					<icon src="shop_apparel.xpm"/>
+					<icon src="shop_apparel.png"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_computer" order="12-">
-					<icon src="shop_computer.xpm"/>
+					<icon src="shop_computer.png"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_department" order="12-">
-					<icon src="shop_department.xpm"/>
+					<icon src="shop_department.png"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_furniture" order="12-">
 					<icon src="shop_furnish.xpm"/>
@@ -2121,13 +2129,13 @@ Vehicle</text>
 					<icon src="sport.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_stadium" order="11-">
-					<icon src="stadium.xpm"/>
+					<icon src="stadium.png"/>
 				</itemgra>
 				<itemgra item_types="poi_swimming" order="12-">
 					<icon src="swimming.png"/>
 				</itemgra>
 				<itemgra item_types="poi_telephone" order="13-">
-					<icon src="telephone.xpm"/>
+					<icon src="telephone.png"/>
 				</itemgra>
 				<itemgra item_types="poi_theater" order="12-">
 					<icon src="theater.xpm"/>
@@ -2154,7 +2162,7 @@ Vehicle</text>
 					<icon src="wine.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_worship" order="8-">
-					<icon src="worship.xpm"/>
+					<icon src="worship.png"/>
 				</itemgra>
 				<itemgra item_types="poi_wrecker" order="12-">
 					<icon src="wrecker.xpm"/>
@@ -2259,6 +2267,11 @@ Vehicle</text>
 					<circle color="#606060" radius="0" width="0" text_size="10"/>
 				</itemgra>
 			</layer>
+			<layer name="Found items" order="0-">
+				<itemgra item_types="found_item">
+					<circle color="#008080" radius="24" width="2" text_size="12"/>
+				</itemgra>
+			</layer>
 		</layout>
 
 		<layout name="Car-dark" daylayout="Car" color="#011001">
@@ -2299,6 +2312,9 @@ Vehicle</text>
 				<itemgra item_types="poly_farm" order="0-">
 					<polygon color="#041a06"/>
 					<text text_size="5"/>
+				</itemgra>
+				<itemgra item_types="poly_meadow" order="0-">
+					<polygon color="#041a06"/>
 				</itemgra>
 				<itemgra item_types="poly_town" order="0-">
 					<polygon color="#191711"/>
@@ -3152,10 +3168,10 @@ Vehicle</text>
 			</layer>
 			<layer name="points">
 				<itemgra item_types="mini_roundabout" order="12-">
-					<icon src="mini_roundabout.xpm"/>
+					<icon src="mini_roundabout.png"/>
 				</itemgra>
 				<itemgra item_types="turning_circle" order="12-">
-					<icon src="mini_roundabout.xpm"/>
+					<icon src="mini_roundabout.png"/>
 				</itemgra>
 				<itemgra item_types="poi_airport" order="5-">
 					<icon src="airport.png"/>
@@ -3167,7 +3183,7 @@ Vehicle</text>
 					<icon src="hotel.png"/>
 				</itemgra>
 				<itemgra item_types="poi_car_parking" order="11-">
-					<icon src="parking.xpm"/>
+					<icon src="parking.png"/>
 				</itemgra>
 				<itemgra item_types="poi_car_dealer_parts" order="0-">
 					<icon src="car_dealer.xpm"/>
@@ -3197,10 +3213,10 @@ Vehicle</text>
 					<icon src="exit.png"/>
 				</itemgra>
 				<itemgra item_types="poi_camp_rv" order="9-">
-					<icon src="camping.xpm"/>
+					<icon src="camping.png"/>
 				</itemgra>
 				<itemgra item_types="poi_museum_history" order="12-">
-					<icon src="museum.xpm"/>
+					<icon src="museum.png"/>
 				</itemgra>
 				<itemgra item_types="poi_hospital" order="12-">
 					<icon src="hospital.png"/>
@@ -3257,13 +3273,13 @@ Vehicle</text>
 					<icon src="bussines_service.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_car_rent" order="11-">
-					<icon src="car_rent.xpm"/>
+					<icon src="car_rent.png"/>
 				</itemgra>
 				<itemgra item_types="poi_car_wash" order="12-">
 					<icon src="car_wash.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_casino" order="11-">
-					<icon src="casino.xpm"/>
+					<icon src="casino.png"/>
 				</itemgra>
 				<itemgra item_types="poi_cemetery" order="11-">
 					<icon src="cemetery.xpm"/>
@@ -3287,7 +3303,7 @@ Vehicle</text>
 					<icon src="crossing.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_dam" order="0-">
-					<icon src="dam.xpm"/>
+					<icon src="dam.png"/>
 				</itemgra>
 				<itemgra item_types="poi_danger_area" order="12-">
 					<icon src="danger_16_16.png"/>
@@ -3296,16 +3312,16 @@ Vehicle</text>
 					<icon src="dangerous.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_daymark" order="0-">
-					<icon src="daymark.xpm"/>
+					<icon src="daymark.png"/>
 				</itemgra>
 				<itemgra item_types="poi_diving" order="0-">
 					<icon src="diving.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_drinking_water" order="0-">
-					<icon src="drinking_water.xpm"/>
+					<icon src="drinking_water.png"/>
 				</itemgra>
 				<itemgra item_types="poi_emergency" order="0-">
-					<icon src="emergency.xpm"/>
+					<icon src="emergency.png"/>
 				</itemgra>
 				<itemgra item_types="poi_fair" order="0-">
 					<icon src="fair.xpm"/>
@@ -3341,13 +3357,13 @@ Vehicle</text>
 					<icon src="icesport.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_information" order="12-">
-					<icon src="information.xpm"/>
+					<icon src="information.png"/>
 				</itemgra>
 				<itemgra item_types="poi_justice" order="10-">
 					<icon src="justice.png"/>
 				</itemgra>
 				<itemgra item_types="poi_landmark" order="0-">
-					<icon src="landmark.xpm"/>
+					<icon src="landmark.png"/>
 				</itemgra>
 				<itemgra item_types="poi_levee" order="0-">
 					<icon src="levee.xpm"/>
@@ -3377,7 +3393,7 @@ Vehicle</text>
 					<icon src="marine_type.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_mark" order="0-">
-					<icon src="mark.xpm"/>
+					<icon src="mark.png"/>
 				</itemgra>
 				<itemgra item_types="poi_military" order="0-">
 					<icon src="military.png"/>
@@ -3428,7 +3444,7 @@ Vehicle</text>
 					<icon src="resort.png"/>
 				</itemgra>
 				<itemgra item_types="poi_restaurant" order="12-">
-					<icon src="restaurant.xpm"/>
+					<icon src="restaurant.png"/>
 				</itemgra>
 				<itemgra item_types="poi_restricted_area" order="0-">
 					<icon src="restricted_area.xpm"/>
@@ -3443,19 +3459,19 @@ Vehicle</text>
 					<icon src="scenic_area.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_school" order="12-">
-					<icon src="school.xpm"/>
+					<icon src="school.png"/>
 				</itemgra>
 				<itemgra item_types="poi_service" order="0-">
 					<icon src="service.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_apparel" order="0-">
-					<icon src="shop_apparel.xpm"/>
+					<icon src="shop_apparel.png"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_computer" order="0-">
-					<icon src="shop_computer.xpm"/>
+					<icon src="shop_computer.png"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_department" order="0-">
-					<icon src="shop_department.xpm"/>
+					<icon src="shop_department.png"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_furniture" order="0-">
 					<icon src="shop_furnish.xpm"/>
@@ -3488,7 +3504,7 @@ Vehicle</text>
 					<icon src="sport.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_stadium" order="0-">
-					<icon src="stadium.xpm"/>
+					<icon src="stadium.png"/>
 				</itemgra>
 				<itemgra item_types="poi_swimming" order="12-">
 					<icon src="swimming.png"/>
@@ -3524,7 +3540,7 @@ Vehicle</text>
 					<icon src="wine.xpm"/>
 				</itemgra>
 				<itemgra item_types="poi_worship" order="0-">
-					<icon src="worship.xpm"/>
+					<icon src="worship.png"/>
 				</itemgra>
 				<itemgra item_types="poi_wrecker" order="0-">
 					<icon src="wrecker.xpm"/>
@@ -3615,6 +3631,11 @@ Vehicle</text>
 			<layer name="POI Labels">
 				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_atm,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
 					<circle color="#606060" radius="0" width="0" text_size="10"/>
+				</itemgra>
+			</layer>
+			<layer name="Found items" order="0-">
+				<itemgra item_types="found_item">
+					<circle color="#008080" radius="24" width="2" text_size="12"/>
 				</itemgra>
 			</layer>
 		</layout>
@@ -4918,6 +4939,11 @@ Vehicle</text>
           text_size="10" />
         </itemgra>
       </layer>
+	<layer name="Found items" order="0-">
+		<itemgra item_types="found_item">
+			<circle color="#008080" radius="24" width="2" text_size="12"/>
+		</itemgra>
+	</layer>
     </layout>
 
 		<layout name="Car-simple" color="#839ea9">
@@ -5042,6 +5068,11 @@ Vehicle</text>
 					<circle radius="3" text_size="16" color="#ffffff" background_color="#000000"/>
 				</itemgra>
 			</layer>
+			<layer name="Found items" order="0-">
+				<itemgra item_types="found_item">
+					<circle color="#008080" radius="24" width="2" text_size="12"/>
+				</itemgra>
+			</layer>
 		</layout>
 
 		<layout name="Bike" color="#ffefb7" font="Liberation Sans">
@@ -5113,6 +5144,10 @@ Vehicle</text>
 					<polygon color="#c7f1a3"/>
 					<polyline color="#79c691"/>
 					<text text_size="5"/>
+				</itemgra>
+				<itemgra item_types="poly_meadow" order="0-">
+					<polygon color="#c7f1a3"/>
+					<polyline color="#79c691"/>
 				</itemgra>
 				<itemgra item_types="poly_scree,poly_scrub,poly_fell,poly_heath" order="0-">
 					<polygon color="#c7f1a3"/>
@@ -6007,6 +6042,11 @@ Vehicle</text>
 					<circle color="#000000" radius="3" text_size="15"/>
 				</itemgra>
 			</layer>
+			<layer name="Found items" order="0-">
+				<itemgra item_types="found_item">
+					<circle color="#008080" radius="24" width="2" text_size="12"/>
+				</itemgra>
+			</layer>
 		</layout>
 
 		<layout name="T@H" font="Liberation Sans">
@@ -6509,8 +6549,13 @@ Vehicle</text>
 				</itemgra>
 				<!-- tourism=hotel -->
 				<itemgra item_types="poi_hotel" order="14-">
-					<icon src="hotel.xpm"/>
+					<icon src="hotel.png"/>
 					<circle color="#000000" radius="3" text_size="7"/>
+				</itemgra>
+			</layer>
+			<layer name="Found items" order="0-">
+				<itemgra item_types="found_item">
+					<circle color="#008080" radius="24" width="2" text_size="12"/>
 				</itemgra>
 			</layer>
 		</layout>
