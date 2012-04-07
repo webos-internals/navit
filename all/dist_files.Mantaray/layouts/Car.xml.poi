@@ -465,3 +465,10 @@
       		<circle color="#606060" radius="0" width="0" text_size="15"/>
     	</itemgra>
 </layer>
+
+<layer name="Found items" order="0-">
+	<itemgra item_types="found_item">
+	<circle color="#008080" radius="24" width="2" text_size="12"/>
+	</itemgra>
+</layer>
+
