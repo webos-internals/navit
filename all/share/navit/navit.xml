@@ -31,7 +31,7 @@
 		[D][D]DMM.ss[S][S]... N/S [D][D]DMM.ss[S][S]... E/W 
 		[-][D]D.d[d]... [-][D][D]D.d[d]... 
 		[-]0xX [-]0xX -->
-	<navit center="4808 N 1134 E" zoom="256" tracking="1" orientation="-1" recent_dest="10">
+	<navit center="4808 N 1134 E" zoom="256" tracking="1" orientation="-1" recent_dest="250">
 		<!-- Use one of gtk_drawing_area, qt_qpainter or sdl. 
 		     On windows systems, use win32 -->
 		<graphics type="gtk_drawing_area"/>
@@ -87,9 +87,10 @@ Navigation</text></img>
 			<a name='Route'><text>Route</text>
 				<img src='gui_actions' onclick='route_description()'><text>Description</text></img>
 				<img src='gui_actions' onclick='route_height_profile()'><text>Height Profile</text></img>
-				<img cond='navit.route.route_status&amp;1' src='gui_stop' onclick='navit.route_remove_last_waypoint()'><text>Drop last 
+				<img cond='navit.waypoints_flag &amp;&amp; (navit.route.route_status&amp;1)' src='cursor_still' onclick='waypoints()'><text>Waypoints</text></img>
+				<img cond='navit.waypoints_flag &amp;&amp; (navit.route.route_status&amp;1)' src='gui_stop' onclick='navit.route_remove_last_waypoint()'><text>Drop last 
 Waypoint</text></img>
-				<img cond='navit.route.route_status&amp;1' src='gui_stop' onclick='navit.route_remove_next_waypoint()'><text>Drop next 
+				<img cond='navit.waypoints_flag &amp;&amp; (navit.route.route_status&amp;1)' src='gui_stop' onclick='navit.route_remove_next_waypoint()'><text>Drop next 
 Waypoint</text></img>
 			</a>
 			<a name='Map Point'><text>Map Point</text>
@@ -583,11 +584,11 @@ Vehicle</text>
                           vehicle_axle_weight= 34000 lbs,  15422 kg
                 -->
 
-                <vehicleprofile name="Truck" flags="0x200100" flags_forward_mask="0x200102" flags_reverse_mask="0x200101" maxspeed_handling="1" route_mode="0" static_speed="5"
+                <vehicleprofile name="Truck" flags="0x200000" flags_forward_mask="0x200002" flags_reverse_mask="0x200001" maxspeed_handling="1" route_mode="0" static_speed="5"
  static_distance="25"
                                 vehicle_width="274" vehicle_height="411" vehicle_length="2134"
                                 vehicle_weight="36287" vehicle_axle_weight="15422">
-                        <roadprofile item_types="street_0,street_1_city,living_street,street_service,track_gravelled,track_unpaved,street_parking_lane" speed="5" route_weight="5">
+                        <roadprofile item_types="street_0,street_1_city,living_street,street_service,track_gravelled,track_unpaved,street_parking_lane" speed="10" route_weight="5">
                                         <announcement level="0" distance_metric="25"/>
                                         <announcement level="1" distance_metric="100"/>
                                         <announcement level="2" distance_metric="200"/>
@@ -1853,6 +1854,46 @@ Vehicle</text>
 					<icon src="gui_sound_32_32.png"/>
 					<circle color="#FF089C" radius="10" text_size="7"/>
 				</itemgra>
+
+				<itemgra item_types="waypoint" order="2">
+					<circle color="#008080" radius="4" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="3-5">
+					<circle color="#008080" radius="8" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="6">
+					<circle color="#008080" radius="10" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="7-8">
+					<circle color="#008080" radius="16" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="9-10">
+					<circle color="#008080" radius="20" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="11">
+					<circle color="#008080" radius="28" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="12">
+					<circle color="#008080" radius="32" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="13">
+					<circle color="#008080" radius="52" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="14">
+					<circle color="#008080" radius="64" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="15">
+					<circle color="#008080" radius="68" width="6" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="16">
+					<circle color="#008080" radius="132" width="8" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="17">
+					<circle color="#008080" radius="268" width="8" text_size="48"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="18">
+					<circle color="#008080" radius="530" width="8" text_size="48"/>
+				</itemgra>
 			</layer>
 			<layer name="Unknown" enabled="no">
 				<!-- This entry shows all unknow point elements as blue circles -->
@@ -1885,6 +1926,9 @@ Vehicle</text>
 				</itemgra>
 				<itemgra item_types="poi_car_dealer_parts" order="12-">
 					<icon src="car_dealer.png"/>
+				</itemgra>
+				<itemgra item_types="poi_car_sharing" order="11-">
+					<icon src="car_sharing.png"/>
 				</itemgra>
 				<itemgra item_types="poi_fuel" order="12-">
 					<icon src="fuel.png"/>
@@ -1938,7 +1982,7 @@ Vehicle</text>
 					<icon src="bank.png"/>
 				</itemgra>
 				<itemgra item_types="poi_atm" order="12-">
-					<icon src="bank.png"/>
+					<icon src="atm.png"/>
 				</itemgra>
 				<itemgra item_types="poi_bay" order="12-">
 					<icon src="bay.xpm"/>
@@ -2059,6 +2103,9 @@ Vehicle</text>
 				</itemgra>
 				<itemgra item_types="poi_forbidden_area" order="12-">
 					<icon src="forbiden_area.xpm"/>
+				</itemgra>
+				<itemgra item_types="poi_shop_bicycle" order="12-">
+				<icon src="bicycle_shop.png"/>
 				</itemgra>
 				<itemgra item_types="poi_shop_gps" order="15-">
 					<icon src="garmin.xpm"/>
@@ -2360,7 +2407,7 @@ Vehicle</text>
 				</itemgra>
 			</layer>
 			<layer name="POI Labels">
-				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_atm,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_bahai,poi_buddhist,poi_hindu,poi_islamic,poi_jain,poi_jewish,poi_pagan,poi_pastafarian,poi_shinto,poi_sikh,poi_taoist,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
+				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_car_sharing,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_atm,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_bahai,poi_buddhist,poi_hindu,poi_islamic,poi_jain,poi_jewish,poi_pagan,poi_pastafarian,poi_shinto,poi_sikh,poi_taoist,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_bicycle,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
 					<circle color="#606060" radius="0" width="0" text_size="10"/>
 				</itemgra>
 				<itemgra item_types="poi_custom0,poi_custom1,poi_custom2,poi_custom3,poi_custom4,poi_custom5,poi_custom6,poi_custom7,poi_custom8,poi_custom9,poi_customa,poi_customb,poi_customc,poi_customd,poi_custome,poi_customf" order="14-">
@@ -3265,6 +3312,46 @@ Vehicle</text>
 					<icon src="gui_sound_32_32.png"/>
 					<circle color="#FF089C" radius="10" text_size="7"/>
 				</itemgra>
+				
+				<itemgra item_types="waypoint" order="2">
+					<circle color="#00a0a0" radius="4" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="3-5">
+					<circle color="#00a0a0" radius="8" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="6">
+					<circle color="#00a0a0" radius="10" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="7-8">
+					<circle color="#00a0a0" radius="16" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="9-10">
+					<circle color="#00a0a0" radius="20" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="11">
+					<circle color="#00a0a0" radius="28" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="12">
+					<circle color="#00a0a0" radius="32" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="13">
+					<circle color="#00a0a0" radius="52" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="14">
+					<circle color="#00a0a0" radius="64" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="15">
+					<circle color="#00a0a0" radius="68" width="6" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="16">
+					<circle color="#00a0a0" radius="132" width="8" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="17">
+					<circle color="#00a0a0" radius="268" width="8" text_size="48"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="18">
+					<circle color="#00a0a0" radius="530" width="8" text_size="48"/>
+				</itemgra>
 			</layer>
 			<layer name="points">
 				<itemgra item_types="mini_roundabout" order="12-">
@@ -3284,6 +3371,9 @@ Vehicle</text>
 				</itemgra>
 				<itemgra item_types="poi_car_parking" order="11-">
 					<icon src="parking.png"/>
+				</itemgra>
+				<itemgra item_types="poi_car_sharing" order="11-">
+					<icon src="car_sharing.png"/>
 				</itemgra>
 				<itemgra item_types="poi_car_dealer_parts" order="0-">
 					<icon src="car_dealer.png"/>
@@ -3346,7 +3436,7 @@ Vehicle</text>
 					<icon src="bank.png"/>
 				</itemgra>
 				<itemgra item_types="poi_atm" order="12-">
-					<icon src="bank.png"/>
+					<icon src="atm.png"/>
 				</itemgra>
 				<itemgra item_types="poi_bay" order="0-">
 					<icon src="bay.xpm"/>
@@ -3762,7 +3852,7 @@ Vehicle</text>
 				</itemgra>
 			</layer>
 			<layer name="POI Labels">
-				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_atm,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_bahai,poi_buddhist,poi_hindu,poi_islamic,poi_jain,poi_jewish,poi_pagan,poi_pastafarian,poi_shinto,poi_sikh,poi_taoist,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
+				<itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_atm,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_car_sharing,poi_church,poi_bahai,poi_buddhist,poi_hindu,poi_islamic,poi_jain,poi_jewish,poi_pagan,poi_pastafarian,poi_shinto,poi_sikh,poi_taoist,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle" order="14-">
 					<circle color="#606060" radius="0" width="0" text_size="10"/>
 				</itemgra>
 			</layer>
@@ -4538,6 +4628,47 @@ Vehicle</text>
         <itemgra item_types="route_end" order="0-">
           <icon src="nav_destination_bk.png" w="32" h="32" />
         </itemgra>
+        
+        <itemgra item_types="waypoint" order="2">
+			<circle color="#000000" radius="4" width="2" text_size="24"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="3-5">
+			<circle color="#000000" radius="8" width="2" text_size="24"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="6">
+			<circle color="#000000" radius="10" width="2" text_size="24"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="7-8">
+			<circle color="#000000" radius="16" width="2" text_size="24"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="9-10">
+			<circle color="#000000" radius="20" width="4" text_size="32"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="11">
+			<circle color="#000000" radius="28" width="4" text_size="32"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="12">
+			<circle color="#000000" radius="32" width="4" text_size="32"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="13">
+			<circle color="#000000" radius="52" width="4" text_size="24"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="14">
+			<circle color="#000000" radius="64" width="4" text_size="24"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="15">
+			<circle color="#000000" radius="68" width="6" text_size="24"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="16">
+			<circle color="#000000" radius="132" width="8" text_size="32"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="17">
+			<circle color="#000000" radius="268" width="8" text_size="48"/>
+		</itemgra>
+		<itemgra item_types="waypoint" order="18">
+			<circle color="#000000" radius="530" width="8" text_size="48"/>
+		</itemgra>
+        
         <itemgra item_types="nav_none" order="0-">
           <icon src="unknown.png" />
         </itemgra>
@@ -4572,7 +4703,7 @@ Vehicle</text>
           <icon src="bank.png" />
         </itemgra>
 	<itemgra item_types="poi_atm" order="13-">
-		<icon src="bank.png"/>
+		<icon src="atm.png"/>
 	</itemgra>
         <itemgra item_types="poi_danger_area" order="13-">
           <icon src="danger_16_16.png" />
@@ -4668,7 +4799,7 @@ Vehicle</text>
           <icon src="bank.png" />
         </itemgra>
 	<itemgra item_types="poi_atm" order="12-">
-	  <icon src="bank.png"/>
+	  <icon src="atm.png"/>
 	</itemgra>
         <itemgra item_types="poi_bay" order="12-">
           <icon src="bay.png" />
@@ -4697,6 +4828,9 @@ Vehicle</text>
         <itemgra item_types="poi_car_rent" order="12-">
           <icon src="car_rent.png" />
         </itemgra>
+	<itemgra item_types="poi_car_sharing" order="11-">
+	  <icon src="car_sharing.png"/>
+	</itemgra>
         <itemgra item_types="poi_car_wash" order="12-">
           <icon src="car_wash.png" />
         </itemgra>
@@ -4926,6 +5060,9 @@ Vehicle</text>
         <itemgra item_types="poi_shop_apparel" order="12-">
           <icon src="shop_apparel.png" />
         </itemgra>
+	<itemgra item_types="poi_shop_bicycle" order="12-">
+	  <icon src="bicycle_shop.png" />
+	</itemgra>
         <itemgra item_types="poi_shop_computer" order="12-">
           <icon src="shop_computer.png" />
         </itemgra>
@@ -5094,8 +5231,8 @@ Vehicle</text>
         </itemgra>
       </layer>
       <layer name="Android-POI-Labels-full" active="0">
-        <itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_atm,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_bahai,poi_buddhist,poi_hindu,poi_islamic,poi_jain,poi_jewish,poi_pagan,poi_pastafarian,poi_shinto,poi_sikh,poi_taoist,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle"
-        order="14-">
+        <itemgra item_types="poi_airport,town_ghost,poi_hotel,poi_car_parking,poi_car_dealer_parts,poi_car_sharing,poi_fuel,poi_shopping,poi_attraction,poi_cafe,poi_bar,poi_pub,highway_exit,poi_camp_rv,poi_museum_history,poi_hospital,poi_dining,poi_fastfood,poi_police,poi_autoservice,poi_bank,poi_atm,poi_bus_station,poi_bus_stop,poi_business_service,poi_car_rent,poi_church,poi_bahai,poi_buddhist,poi_hindu,poi_islamic,poi_jain,poi_jewish,poi_pagan,poi_pastafarian,poi_shinto,poi_sikh,poi_taoist,poi_cinema,poi_concert,poi_drinking_water,poi_emergency,poi_fair,poi_fish,poi_government_building,poi_hotspring,poi_information,poi_justice,poi_landmark,poi_library,poi_mall,poi_manmade_feature,poi_marine,poi_marine_type,poi_mark,poi_oil_field,poi_peak,poi_personal_service,poi_pharmacy,poi_post_office,poi_public_office,poi_rail_halt,poi_rail_station,poi_rail_tram_stop,poi_repair_service,poi_resort,poi_restaurant,poi_restricted_area,poi_sailing,poi_scenic_area,poi_shop_bicycle,poi_school,poi_service,poi_shop_retail,poi_skiing,poi_social_service,poi_sport,poi_stadium,poi_swimming,poi_theater,poi_townhall,poi_trail,poi_truck_stop,poi_tunnel,poi_worship,poi_wrecker,poi_zoo,poi_biergarten,poi_castle,poi_ruins,poi_memorial,poi_monument,poi_shelter,poi_fountain,poi_viewpoint,vehicle"
+         order="14-">
           <circle color="#606060" radius="0" width="0"
           text_size="10" />
         </itemgra>
@@ -5197,6 +5334,10 @@ Vehicle</text>
 				<itemgra item_types="street_route" >
 					<polyline width="9" color="#ffffff" />
 				</itemgra>
+				
+				<itemgra item_types="waypoint" >
+					<circle color="#000000" radius="8" width="2" text_size="24"/>
+				</itemgra>
 			</layer>
 			<layer name="labels">
 				<itemgra item_types="water_line" order="11-">
@@ -5264,8 +5405,6 @@ Vehicle</text>
 				</itemgra>
 			</cursor>
 
-			<xi:include xpointer="xpointer(/config/navit/layout[@name='Car']/layer[@name='POI Symbols'])"/>
-			<!-- <xi:include xpointer="xpointer(/config/navit/layout[@name='Car']/layer[@name='POI Labels'])"/> -->
 			<layer name="Landuse">
 				<itemgra item_types="image" order="0-">
 					<image/>
@@ -6137,6 +6276,47 @@ Vehicle</text>
 				<itemgra item_types="route_end" order="0-">
 					<icon src="nav_destination_bk.svg" w="32" h="32"/>
 				</itemgra>
+				
+				<itemgra item_types="waypoint" order="2">
+					<circle color="#000000" radius="4" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="3-5">
+					<circle color="#000000" radius="8" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="6">
+					<circle color="#000000" radius="10" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="7-8">
+					<circle color="#000000" radius="16" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="9-10">
+					<circle color="#000000" radius="20" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="11">
+					<circle color="#000000" radius="28" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="12">
+					<circle color="#000000" radius="32" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="13">
+					<circle color="#000000" radius="52" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="14">
+					<circle color="#000000" radius="64" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="15">
+					<circle color="#000000" radius="68" width="6" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="16">
+					<circle color="#000000" radius="132" width="8" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="17">
+					<circle color="#000000" radius="268" width="8" text_size="48"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="18">
+					<circle color="#000000" radius="530" width="8" text_size="48"/>
+				</itemgra>
+				
 				<itemgra item_types="nav_none" order="0-">
 					<icon src="unknown.svg"/>
 				</itemgra>
@@ -6208,6 +6388,24 @@ Vehicle</text>
 					<circle color="#000000" radius="3" text_size="15"/>
 				</itemgra>
 			</layer>
+
+			<xi:include xpointer="xpointer(/config/navit/layout[@name='Car']/layer[@name='POI Symbols'])"/>
+			<!--<xi:include xpointer="xpointer(/config/navit/layout[@name='Car']/layer[@name='POI Labels'])"/> -->
+
+			<!-- "Bicycle POIs" -->
+			<layer name="Bicycle POI Symbols">
+				<itemgra item_types="poi_bicycle_parking" order="12-">
+					<icon src="bicycle_parking.png"/>
+				</itemgra>
+				<itemgra item_types="poi_bicycle_rental" order="11-">
+					<icon src="bicycle_rental.png"/>
+				</itemgra>
+			</layer>
+			<layer name="Bicycle POI Labels">
+				<itemgra item_types="poi_bicycle_parking,poi_bicycle_rental" order="14-">
+					<circle color="#606060" radius="0" width="0" text_size="10"/>
+				</itemgra>
+			</layer>					
 			<layer name="Found items" order="0-">
 				<itemgra item_types="found_item">
 					<circle color="#008080" radius="24" width="2" text_size="12"/>
@@ -6675,6 +6873,47 @@ Vehicle</text>
 				<itemgra item_types="rg_point" order="0-">
 					<circle color="#FF089C" radius="10"/>
 				</itemgra>
+				
+				<itemgra item_types="waypoint" order="2">
+					<circle color="#008080" radius="4" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="3-5">
+					<circle color="#008080" radius="8" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="6">
+					<circle color="#008080" radius="10" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="7-8">
+					<circle color="#008080" radius="16" width="2" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="9-10">
+					<circle color="#008080" radius="20" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="11">
+					<circle color="#008080" radius="28" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="12">
+					<circle color="#008080" radius="32" width="4" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="13">
+					<circle color="#008080" radius="52" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="14">
+					<circle color="#008080" radius="64" width="4" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="15">
+					<circle color="#008080" radius="68" width="6" text_size="24"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="16">
+					<circle color="#008080" radius="132" width="8" text_size="32"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="17">
+					<circle color="#008080" radius="268" width="8" text_size="48"/>
+				</itemgra>
+				<itemgra item_types="waypoint" order="18">
+					<circle color="#008080" radius="530" width="8" text_size="48"/>
+				</itemgra>
+				
 				<!-- !!!!...POIs...!!!! -->
 				<!-- amenity=bank -->
 				<itemgra item_types="poi_bank" order="14-">
@@ -6682,7 +6921,7 @@ Vehicle</text>
 					<circle color="#000000" radius="3" text_size="7"/>
 				</itemgra>
 				<itemgra item_types="poi_atm" order="12-">
-					<icon src="bank.png"/>
+					<icon src="atm.png"/>
 				</itemgra>
 				<!-- amenity=fuel -->
 				<itemgra item_types="poi_fuel" order="14-">
